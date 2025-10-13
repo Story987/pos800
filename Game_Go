@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра Го с ИИ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .game-container {
+            display: inline-block;
+            background-color: #DEB887;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .board {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            background-color: #DEB887;
+            margin: 0 auto;
+        }
+
+        .grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: grid;
+            grid-template-columns: repeat(19, 1fr);
+            grid-template-rows: repeat(19, 1fr);
+        }
+
+        .cell {
+            position: relative;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .cell::before, .cell::after {
+            content: '';
+            position: absolute;
+            background-color: #000;
+        }
+
+        .cell::before {
+            width: 100%;
+            height: 1px;
+            top: 50%;
+            left: 0;
+        }
+
+        .cell::after {
+            width: 1px;
+            height: 100%;
+            left: 50%;
+            top: 0;
+        }
+
+        .stone {
+            position: absolute;
+            width: 85%;
+            height: 85%;
+            border-radius: 50%;
+            top: 7.5%;
+            left: 7.5%;
+            z-index: 2;
+        }
+
+        .black {
+            background-color: #000;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .white {
+            background-color: #fff;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            border: 1px solid #000;
+        }
+
+        .controls {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .status {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .star-point {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #000;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .ai-thinking {
+            color: #ff4444;
+            font-style: italic;
+        }
+
+        .difficulty-selector {
+            margin: 10px 0;
+        }
+
+        .difficulty-selector select {
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        .last-move {
+            box-shadow: 0 0 0 2px red !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>Игра Го с ИИ</h1>
+    
+    <div class="game-container">
+        <div class="status" id="status">Ход черных (Вы)</div>
+        
+        <div class="difficulty-selector">
+            <label for="aiDifficulty">Сложность ИИ: </label>
+            <select id="aiDifficulty" onchange="changeDifficulty()">
+                <option value="novice">Новичок</option>
+                <option value="easy">Легкий</option>
+            </select>
+        </div>
+
+        <div class="controls">
+            <button onclick="restartGame()">Новая игра</button>
+            <button onclick="passTurn()">Пас</button>
+            <button onclick="togglePlayer()">Сменить сторону</button>
+        </div>
+
+        <div class="board" id="board">
+            <div class="grid" id="grid"></div>
+        </div>
+    </div>
+
+    <script>
+        class GoAI {
+            constructor(difficulty = 'novice') {
+                this.difficulty = difficulty;
+            }
+
+            getMove(board, player) {
+                console.log(`ИИ (${player}) думает на уровне: ${this.difficulty}`);
+                
+                // Имитация размышлений
+                setTimeout(() => {
+                    let move;
+                    
+                    switch(this.difficulty) {
+                        case 'novice':
+                            move = this.getNoviceMove(board, player);
+                            break;
+                        case 'easy':
+                            move = this.getEasyMove(board, player);
+                            break;
+                        default:
+                            move = this.getNoviceMove(board, player);
+                    }
+                    
+                    if (move) {
+                        game.placeStone(move.row, move.col, true);
+                    } else {
+                        game.passTurn(true);
+                    }
+                }, 500 + Math.random() * 1000); // Случайная задержка
+            }
+
+            getNoviceMove(board, player) {
+                const validMoves = this.getValidMoves(board);
+                if (validMoves.length === 0) return null;
+
+                // Приоритеты для новичка
+                const captureMove = this.findCaptureMove(board, player, validMoves);
+                if (captureMove) return captureMove;
+
+                const defenseMove = this.findDefenseMove(board, player, validMoves);
+                if (defenseMove) return defenseMove;
+
+                // Случайный ход с предпочтением центра и своих групп
+                return this.getWeightedRandomMove(board, player, validMoves);
+            }
+
+            getEasyMove(board, player) {
+                const validMoves = this.getValidMoves(board);
+                if (validMoves.length === 0) return null;
+
+                // Более агрессивная стратегия
+                const captureMove = this.findCaptureMove(board, player, validMoves);
+                if (captureMove) return captureMove;
+
+                const defenseMove = this.findDefenseMove(board, player, validMoves);
+                if (defenseMove) return defenseMove;
+
+                const extensionMove = this.findExtensionMove(board, player, validMoves);
+                if (extensionMove) return extensionMove;
+
+                return this.getWeightedRandomMove(board, player, validMoves);
+            }
+
+            getValidMoves(board) {
+                const moves = [];
+                for (let i = 0; i < board.length; i++) {
+                    for (let j = 0; j < board[i].length; j++) {
+                        if (board[i][j] === null) {
+                            moves.push({row: i, col: j});
+                        }
+                    }
+                }
+                return moves;
+            }
+
+            findCaptureMove(board, player, validMoves) {
+                const opponent = player === 'black' ? 'white' : 'black';
+                
+                for (const move of validMoves) {
+                    // Проверяем, приводит ли ход к захвату камней противника
+                    const testBoard = this.copyBoard(board);
+                    testBoard[move.row][move.col] = player;
+                    
+                    const neighbors = this.getNeighbors(move.row, move.col, board.length);
+                    for (const [nr, nc] of neighbors) {
+                        if (testBoard[nr][nc] === opponent) {
+                            const group = this.findGroup(nr, nc, testBoard);
+                            if (this.countLiberties(group, testBoard) === 0) {
+                                return move; // Нашли ход для захвата!
+                            }
+                        }
+                    }
+                }
+                return null;
+            }
+
+            findDefenseMove(board, player, validMoves) {
+                // Ищем свои группы с 1 дыханием и защищаем их
+                for (let i = 0; i < board.length; i++) {
+                    for (let j = 0; j < board[i].length; j++) {
+                        if (board[i][j] === player) {
+                            const group = this.findGroup(i, j, board);
+                            const liberties = this.findLiberties(group, board);
+                            
+                            if (liberties.size === 1) {
+                                // Группа в опасности! Защищаем
+                                const liberty = Array.from(liberties)[0];
+                                const defenseMove = {row: liberty[0], col: liberty[1]};
+                                
+                                // Проверяем, что ход допустимый
+                                if (validMoves.some(m => m.row === defenseMove.row && m.col === defenseMove.col)) {
+                                    return defenseMove;
+                                }
+                            }
+                        }
+                    }
+                }
+                return null;
+            }
+
+            findExtensionMove(board, player, validMoves) {
+                // Ходы для расширения рядом со своими камнями
+                const extensionMoves = [];
+                
+                for (const move of validMoves) {
+                    const neighbors = this.getNeighbors(move.row, move.col, board.length);
+                    let friendCount = 0;
+                    
+                    for (const [nr, nc] of neighbors) {
+                        if (board[nr][nc] === player) {
+                            friendCount++;
+                        }
+                    }
+                    
+                    if (friendCount > 0) {
+                        extensionMoves.push({move, weight: friendCount});
+                    }
+                }
+                
+                if (extensionMoves.length > 0) {
+                    // Выбираем ход с максимальным количеством соседей-союзников
+                    extensionMoves.sort((a, b) => b.weight - a.weight);
+                    return extensionMoves[0].move;
+                }
+                
+                return null;
+            }
+
+            getWeightedRandomMove(board, player, validMoves) {
+                // Взвешенный случайный выбор с предпочтением хороших позиций
+                const weightedMoves = [];
+                
+                for (const move of validMoves) {
+                    let weight = 1;
+                    
+                    // Предпочтение центру доски
+                    const centerDist = this.distanceToCenter(move.row, move.col, board.length);
+                    weight += (board.length/2 - centerDist) * 0.5;
+                    
+                    // Предпочтение ходам рядом со своими камнями
+                    const neighbors = this.getNeighbors(move.row, move.col, board.length);
+                    for (const [nr, nc] of neighbors) {
+                        if (board[nr][nc] === player) {
+                            weight += 2;
+                        }
+                    }
+                    
+                    // Предпочтение ходам на 3-4 линии
+                    const line = Math.min(move.row, board.length - 1 - move.row, 
+                                         move.col, board.length - 1 - move.col);
+                    if (line === 3 || line === 4) weight += 1;
+                    
+                    weightedMoves.push({move, weight});
+                }
+                
+                // Выбор на основе весов
+                const totalWeight = weightedMoves.reduce((sum, m) => sum + m.weight, 0);
+                let random = Math.random() * totalWeight;
+                
+                for (const {move, weight} of weightedMoves) {
+                    random -= weight;
+                    if (random <= 0) return move;
+                }
+                
+                return validMoves[0]; // fallback
+            }
+
+            // Вспомогательные методы
+            copyBoard(board) {
+                return board.map(row => [...row]);
+            }
+
+            getNeighbors(row, col, boardSize) {
+                const neighbors = [];
+                const directions = [[0,1], [1,0], [0,-1], [-1,0]];
+                
+                for (const [dr, dc] of directions) {
+                    const nr = row + dr;
+                    const nc = col + dc;
+                    if (nr >= 0 && nr < boardSize && nc >= 0 && nc < boardSize) {
+                        neighbors.push([nr, nc]);
+                    }
+                }
+                return neighbors;
+            }
+
+            findGroup(startRow, startCol, board) {
+                const color = board[startRow][startCol];
+                const visited = new Set();
+                const stack = [[startRow, startCol]];
+                const group = [];
+                
+                while (stack.length > 0) {
+                    const [r, c] = stack.pop();
+                    const key = `${r},${c}`;
+                    
+                    if (visited.has(key)) continue;
+                    visited.add(key);
+                    
+                    if (board[r][c] === color) {
+                        group.push([r, c]);
+                        stack.push(...this.getNeighbors(r, c, board.length));
+                    }
+                }
+                
+                return group;
+            }
+
+            findLiberties(group, board) {
+                const liberties = new Set();
+                
+                for (const [r, c] of group) {
+                    const neighbors = this.getNeighbors(r, c, board.length);
+                    for (const [nr, nc] of neighbors) {
+                        if (board[nr][nc] === null) {
+                            liberties.add(`${nr},${nc}`);
+                        }
+                    }
+                }
+                
+                return liberties;
+            }
+
+            countLiberties(group, board) {
+                return this.findLiberties(group, board).size;
+            }
+
+            distanceToCenter(row, col, boardSize) {
+                const center = (boardSize - 1) / 2;
+                return Math.sqrt(Math.pow(row - center, 2) + Math.pow(col - center, 2));
+            }
+        }
+
+        class GoGame {
+            constructor() {
+                this.boardSize = 19;
+                this.board = Array(this.boardSize).fill().map(() => Array(this.boardSize).fill(null));
+                this.currentPlayer = 'black';
+                this.gameOver = false;
+                this.passCount = 0;
+                this.ai = new GoAI('novice');
+                this.humanPlayer = 'black'; // Человек начинает черными
+                this.lastMove = null;
+                this.initBoard();
+            }
+
+            initBoard() {
+                const grid = document.getElementById('grid');
+                grid.innerHTML = '';
+                
+                for (let i = 0; i < this.boardSize; i++) {
+                    for (let j = 0; j < this.boardSize; j++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'cell';
+                        cell.dataset.row = i;
+                        cell.dataset.col = j;
+                        cell.addEventListener('click', (e) => this.handleCellClick(i, j, e));
+                        grid.appendChild(cell);
+                    }
+                }
+
+                this.addStarPoints();
+                this.updateStatus();
+            }
+
+            handleCellClick(row, col, event) {
+                if (this.gameOver || this.currentPlayer !== this.humanPlayer) {
+                    return;
+                }
+
+                this.placeStone(row, col);
+            }
+
+            placeStone(row, col, isAIMove = false) {
+                if (this.gameOver || this.board[row][col] !== null) {
+                    return false;
+                }
+
+                // Базовая проверка на самоубийство
+                if (!this.isValidMove(row, col)) {
+                    if (!isAIMove) {
+                        alert("Нельзя ставить камень без дыханий!");
+                    }
+                    return false;
+                }
+
+                this.board[row][col] = this.currentPlayer;
+                this.lastMove = {row, col};
+                this.renderStone(row, col, this.currentPlayer);
+                this.passCount = 0;
+
+                // Проверка на захват камней
+                this.checkCaptures(row, col);
+
+                this.currentPlayer = this.currentPlayer === 'black' ? 'white' : 'black';
+                this.updateStatus();
+
+                // Если следующий ход ИИ - запускаем его
+                if (!this.gameOver && this.currentPlayer !== this.humanPlayer) {
+                    this.showAIThinking();
+                    this.ai.getMove(this.board, this.currentPlayer);
+                }
+
+                return true;
+            }
+
+            isValidMove(row, col) {
+                // Упрощенная проверка (можно улучшить)
+                const testBoard = this.copyBoard();
+                testBoard[row][col] = this.currentPlayer;
+                
+                // Проверяем есть ли хотя бы одно дыхание
+                const neighbors = this.getNeighbors(row, col);
+                for (const [nr, nc] of neighbors) {
+                    if (testBoard[nr][nc] === null) return true;
+                }
+                
+                // Или создаем захват
+                return this.wouldCapture(row, col, testBoard);
+            }
+
+            wouldCapture(row, col, board) {
+                const opponent = this.currentPlayer === 'black' ? 'white' : 'black';
+                const neighbors = this.getNeighbors(row, col);
+                
+                for (const [nr, nc] of neighbors) {
+                    if (board[nr][nc] === opponent) {
+                        const group = this.findGroup(nr, nc, board);
+                        if (this.countLiberties(group, board) === 0) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            checkCaptures(row, col) {
+                const opponent = this.currentPlayer === 'black' ? 'white' : 'black';
+                const directions = [[0,1], [1,0], [0,-1], [-1,0]];
+
+                directions.forEach(([dx, dy]) => {
+                    const newRow = row + dx;
+                    const newCol = col + dy;
+                    
+                    if (this.isValidPosition(newRow, newCol) && 
+                        this.board[newRow][newCol] === opponent) {
+                        this.checkGroupLiberties(newRow, newCol);
+                    }
+                });
+            }
+
+            checkGroupLiberties(row, col) {
+                const color = this.board[row][col];
+                const group = this.findGroup(row, col, this.board);
+                const liberties = this.findLiberties(group, this.board);
+
+                if (liberties.size === 0) {
+                    // Захват группы
+                    group.forEach(([r, c]) => {
+                        this.board[r][c] = null;
+                        this.removeStoneFromBoard(r, c);
+                    });
+                }
+            }
+
+            removeStoneFromBoard(row, col) {
+                const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+                const stone = cell.querySelector('.stone');
+                if (stone) {
+                    stone.remove();
+                }
+            }
+
+            isValidPosition(row, col) {
+                return row >= 0 && row < this.boardSize && col >= 0 && col < this.boardSize;
+            }
+
+            getNeighbors(row, col) {
+                const neighbors = [];
+                const directions = [[0,1], [1,0], [0,-1], [-1,0]];
+                
+                for (const [dr, dc] of directions) {
+                    const nr = row + dr;
+                    const nc = col + dc;
+                    if (this.isValidPosition(nr, nc)) {
+                        neighbors.push([nr, nc]);
+                    }
+                }
+                return neighbors;
+            }
+
+            findGroup(startRow, startCol, board) {
+                const color = board[startRow][startCol];
+                const visited = new Set();
+                const stack = [[startRow, startCol]];
+                const group = [];
+                
+                while (stack.length > 0) {
+                    const [r, c] = stack.pop();
+                    const key = `${r},${c}`;
+                    
+                    if (visited.has(key)) continue;
+                    visited.add(key);
+                    
+                    if (board[r][c] === color) {
+                        group.push([r, c]);
+                        stack.push(...this.getNeighbors(r, c));
+                    }
+                }
+                
+                return group;
+            }
+
+            findLiberties(group, board) {
+                const liberties = new Set();
+                
+                for (const [r, c] of group) {
+                    const neighbors = this.getNeighbors(r, c);
+                    for (const [nr, nc] of neighbors) {
+                        if (board[nr][nc] === null) {
+                            liberties.add(`${nr},${nc}`);
+                        }
+                    }
+                }
+                
+                return liberties;
+            }
+
+            countLiberties(group, board) {
+                return this.findLiberties(group, board).size;
+            }
+
+            renderStone(row, col, color) {
+                // Убираем подсветку с предыдущего хода
+                const oldStones = document.querySelectorAll('.last-move');
+                oldStones.forEach(stone => stone.classList.remove('last-move'));
+
+                const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+                const stone = document.createElement('div');
+                stone.className = `stone ${color} last-move`;
+                stone.dataset.row = row;
+                stone.dataset.col = col;
+                cell.appendChild(stone);
+            }
+
+            passTurn(isAIMove = false) {
+                this.passCount++;
+                this.currentPlayer = this.currentPlayer === 'black' ? 'white' : 'black';
+                
+                if (this.passCount >= 2) {
+                    this.endGame();
+                } else {
+                    this.updateStatus();
+                    
+                    // Если следующий ход ИИ
+                    if (!this.gameOver && this.currentPlayer !== this.humanPlayer) {
+                        this.showAIThinking();
+                        this.ai.getMove(this.board, this.currentPlayer);
+                    }
+                }
+            }
+
+            showAIThinking() {
+                const status = document.getElementById('status');
+                status.innerHTML = 'ИИ думает... <span class="ai-thinking">🤔</span>';
+            }
+
+            endGame() {
+                this.gameOver = true;
+                this.updateStatus();
+                setTimeout(() => {
+                    alert('Игра окончена! Оба игрока пропустили ход.');
+                }, 100);
+            }
+
+            updateStatus() {
+                const status = document.getElementById('status');
+                if (this.gameOver) {
+                    status.textContent = 'Игра окончена';
+                } else {
+                    const playerName = this.currentPlayer === 'black' ? 'Черные' : 'Белые';
+                    const whoseTurn = this.currentPlayer === this.humanPlayer ? '(Ваш ход)' : '(Ход ИИ)';
+                    status.textContent = `Ход: ${playerName} ${whoseTurn}`;
+                }
+            }
+
+            restart() {
+                this.board = Array(this.boardSize).fill().map(() => Array(this.boardSize).fill(null));
+                this.currentPlayer = 'black';
+                this.gameOver = false;
+                this.passCount = 0;
+                this.lastMove = null;
+                
+                const stones = document.querySelectorAll('.stone');
+                stones.forEach(stone => stone.remove());
+                
+                this.updateStatus();
+            }
+
+            togglePlayer() {
+                this.humanPlayer = this.humanPlayer === 'black' ? 'white' : 'black';
+                this.restart();
+            }
+
+            setDifficulty(difficulty) {
+                this.ai = new GoAI(difficulty);
+            }
+
+            copyBoard() {
+                return this.board.map(row => [...row]);
+            }
+
+            addStarPoints() {
+                const board = document.getElementById('board');
+                const starPoints = [3, 9, 15];
+                
+                starPoints.forEach(i => {
+                    starPoints.forEach(j => {
+                        const point = document.createElement('div');
+                        point.className = 'star-point';
+                        point.style.left = `calc(${(i / (this.boardSize - 1)) * 100}% - 3px)`;
+                        point.style.top = `calc(${(j / (this.boardSize - 1)) * 100}% - 3px)`;
+                        board.appendChild(point);
+                    });
+                });
+            }
+        }
+
+        // Инициализация игры
+        const game = new GoGame();
+
+        function restartGame() {
+            game.restart();
+        }
+
+        function passTurn() {
+            game.passTurn();
+        }
+
+        function togglePlayer() {
+            game.togglePlayer();
+        }
+
+        function changeDifficulty() {
+            const difficulty = document.getElementById('aiDifficulty').value;
+            game.setDifficulty(difficulty);
+        }
+    </script>
+</body>
+</html>
