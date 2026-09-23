@@ -7,11 +7,20 @@ https://github.com/Story987/pos800/actions/runs/35873864864
 https://story987.github.io/pos800/Line1/VavilonVIP.html
 
 
+
+
 ## Что используеться
 
 obsidian
 
 ## Плагин 
+
+Используемые Плагины
+Sync Embeds репозиторий https://github.com/uthvah/sync-embeds 
+
+**[[Плагин Sync Embeds используемый в Обсидиан для Редактирования]]**
+
+
 
 
 # 2 Вторая часть
