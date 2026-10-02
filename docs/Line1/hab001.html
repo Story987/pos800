@@ -1,0 +1,1299 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>袦械薪褞-褏邪斜 芯褌 小邪写邪 懈写械泄</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#07141b;--panel:rgba(255,255,255,.07);--panel2:rgba(255,255,255,.11);
+  --line:rgba(255,255,255,.13);--text:#fff;--muted:#aab5ba;
+  --accent:#83df55;--danger:#ff5575;--warn:#ffe14d;
+  --card:rgba(255,255,255,.06);--header-bg:rgba(7,20,27,.93)
+}
+body.light{
+  --bg:#eef4f1;--panel:rgba(255,255,255,.85);--panel2:rgba(255,255,255,.95);
+  --line:rgba(0,0,0,.1);--text:#102020;--muted:#5a6a70;
+  --card:rgba(255,255,255,.85);--header-bg:rgba(238,244,241,.95)
+}
+html,body{margin:0;padding:0;width:100%;height:100%;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,Roboto,sans-serif;min-height:100vh;-webkit-user-select:none;user-select:none}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer;color:inherit;background:none;border:0}
+input,textarea,select:focus,button:focus{outline:none}
+.header{position:fixed;z-index:1000;top:0;left:0;right:0;height:56px;display:flex;align-items:center;gap:5px;padding:6px 8px;background:var(--header-bg);border-bottom:1px solid var(--line);backdrop-filter:blur(15px)}
+.header button{width:42px;height:42px;border-radius:11px;font-size:19px;display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0}
+.header button:active{background:var(--panel2)}
+.logo{flex:1;font-weight:800;letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 4px;color:var(--text);text-decoration:none;font-size:14px}
+.logo span{color:var(--accent)}
+.burger{flex-direction:column;gap:4px}
+.burger span{display:block;width:20px;height:2.5px;background:var(--text);border-radius:2px}
+.searchbar{display:none;position:fixed;z-index:900;top:56px;left:0;right:0;padding:9px;background:var(--header-bg);border-bottom:1px solid var(--line);backdrop-filter:blur(15px);gap:7px}
+.searchbar.show{display:flex}
+.searchbar input{flex:1;padding:12px 14px;border-radius:11px;border:1px solid var(--line);background:#fff;color:#111;font-size:16px;-webkit-appearance:none}
+.scene{position:fixed;z-index:-1;inset:56px 0 0;overflow:hidden;background:linear-gradient(#192c48,#6bb6bd 55%,#315733 56%,#17291b)}
+body.light .scene{background:linear-gradient(#87ceeb,#bfe6f5 55%,#a8e063 56%,#315733)}
+.sun{position:absolute;width:100px;height:100px;border-radius:50%;background:#ffe28a;right:12%;top:12%;box-shadow:0 0 60px rgba(255,226,138,.6)}
+.cloud{position:absolute;font-size:60px;opacity:.5;animation:cloud linear infinite;filter:blur(.5px)}
+.c1{top:17%;left:-10%;animation-duration:24s}
+.c2{top:31%;left:55%;animation-duration:31s;font-size:75px}
+.c3{top:9%;left:75%;animation-duration:20s;font-size:50px}
+@keyframes cloud{to{transform:translateX(130vw)}}
+.ground{position:absolute;left:0;right:0;bottom:0;height:44%;background:repeating-linear-gradient(-12deg,#315b32 0 7px,#386e38 7px 11px);animation:ground 1.4s linear infinite}
+@keyframes ground{to{background-position:100px 0}}
+.rider{position:absolute;left:50%;bottom:16%;transform:translateX(-50%);width:340px;height:320px;animation:bob 1.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translate(-50%,-6px)}}
+.wheel{position:absolute;border-radius:50%;border:6px solid #2b2b2b;background:repeating-conic-gradient(#87949a 0 2deg,transparent 2deg 30deg);animation:wheel linear infinite;box-shadow:inset 0 0 0 6px #6d777b}
+.wheel::after{content:"";position:absolute;top:50%;left:50%;width:22%;height:22%;margin:-11% 0 0 -11%;border-radius:50%;background:#444;box-shadow:inset 0 0 0 3px #888}
+.bw{left:10px;bottom:0;width:220px;height:220px;animation-duration:1s}
+.sw{right:14px;bottom:0;width:92px;height:92px;animation-duration:.45s;border-width:5px}
+@keyframes wheel{to{transform:rotate(360deg)}}
+.crank{position:absolute;bottom:0;left:10px;width:220px;height:220px;animation:wheel 1s linear infinite}
+.crank::before,.crank::after{content:"";position:absolute;left:50%;width:8px;height:60px;margin-left:-4px;background:#222;border-radius:4px}
+.crank::before{top:50%}.crank::after{bottom:50%}
+.pedal{position:absolute;left:50%;width:30px;height:10px;margin-left:-15px;background:#111;border-radius:3px}
+.pt{top:calc(50% + 54px)}.pb{bottom:calc(50% + 54px)}
+.frame{position:absolute;bottom:0;left:0;width:340px;height:320px;overflow:visible;pointer-events:none}
+.frog{position:absolute;bottom:150px;left:60px;width:150px;height:150px;animation:pf 1s linear infinite;transform-origin:50% 100%}
+@keyframes pf{0%,100%{transform:rotate(0) translateY(0)}25%{transform:rotate(4deg) translateY(-4px)}50%{transform:rotate(0) translateY(0)}75%{transform:rotate(-4deg) translateY(-4px)}}
+.eye{transform-origin:center;transform-box:fill-box;animation:blink 4s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+body.no-anim *{animation:none !important}
+main{padding:76px 14px 30px;max-width:900px;margin:auto}
+.hero{text-align:center;margin:6vh auto 20px;max-width:600px}
+.hero h1{font-size:clamp(26px,7vw,46px);margin:0 0 8px}
+.hero p{color:var(--muted);line-height:1.5}
+.hero-tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:14px 0 4px;font-size:13px}
+.hero-tags span{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:6px 12px;color:var(--text)}
+.hero-story{font-size:13.5px;color:var(--muted);line-height:1.6;max-width:480px;margin:16px auto 0;font-style:italic;padding:0 10px}
+.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin-top:18px}
+.primary,.secondary,.danger{border:0;border-radius:12px;padding:12px 16px;font-weight:700;text-decoration:none;display:inline-block}
+.primary{background:var(--accent);color:#0d2a0d}
+.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}
+.danger{background:var(--danger);color:#fff}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:16px;margin-top:16px;box-shadow:0 15px 45px rgba(0,0,0,.4);backdrop-filter:blur(14px)}
+.slide{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+.slide.show{transform:translateX(0)}
+.settings-screen{z-index:600}
+.editor-screen{z-index:650}
+.section-editor-screen{z-index:660}
+.groups-screen{z-index:670}
+.slide-head{height:56px;background:var(--header-bg);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 6px;gap:5px;flex-shrink:0;backdrop-filter:blur(15px)}
+.slide-head h2{flex:1;margin:0;font-size:17px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-left:6px}
+.slide-head.edit-mode{background:rgba(43,108,176,.92)}
+.slide-back{width:44px;height:44px;border-radius:11px;font-size:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--panel)}
+.slide-back.hidden{display:none}
+.slide-back:active{background:var(--panel2)}
+.slide-btn{width:44px;height:44px;border-radius:11px;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--panel)}
+.slide-btn:active{background:var(--panel2)}
+.groups-mode-btn{display:none}
+.groups-mode-btn.show{display:flex}
+.slide-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px;background-size:cover;background-position:center;transition:background-image .3s}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:16px}
+.tile-wrap{position:relative}
+.tile{min-height:110px;padding:14px 8px;border:1px solid var(--line);border-radius:16px;background:var(--card);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-family:inherit;width:100%;transition:transform .1s,background .15s;backdrop-filter:blur(6px)}
+.tile:active{transform:scale(.96);background:var(--panel2)}
+.tile-emoji{position:relative;width:40px;height:40px;display:flex;align-items:center;justify-content:center;line-height:1}
+.tile-emoji .tile-emoji-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:32px;line-height:1}
+.tile-emoji.has-img .tile-emoji-fallback{display:none}
+.tile-emoji img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:8px;background:rgba(255,255,255,.05);padding:2px}
+.tile-name{font-size:13px;font-weight:600;line-height:1.2}
+.tile-count{font-size:11px;color:var(--muted);background:rgba(0,0,0,.15);padding:2px 8px;border-radius:8px}
+.tile.inbox{background:linear-gradient(135deg,rgba(255,225,77,.15),rgba(255,225,77,.05));border-color:rgba(255,225,77,.4)}
+.tile.inbox .tile-count{background:rgba(255,225,77,.3);color:#ffe14d}
+body.light .tile.inbox .tile-count{color:#8a6b00}
+.tile-manage,.tile-order{display:none}
+.tiles.edit-mode .tile-manage,.tiles.edit-mode .tile-order{display:flex}
+.tile-manage{position:absolute;top:5px;right:5px;gap:2px;z-index:2}
+.tile-order{position:absolute;top:5px;left:5px;flex-direction:column;gap:2px;z-index:2}
+.tile-mng-btn,.tile-arrow{width:26px;height:26px;border:1px solid var(--line);border-radius:6px;font-size:12px;display:flex;align-items:center;justify-content:center;background:var(--header-bg);backdrop-filter:blur(8px);color:var(--text)}
+.tile-mng-btn:active,.tile-arrow:active{background:var(--panel2)}
+.tile-arrow{width:22px;height:22px;font-size:11px}
+.tile-add{background:rgba(255,255,255,.04);border:2px dashed var(--line)}
+.home-blocks{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.home-block{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;backdrop-filter:blur(10px)}
+.home-block-title{font-size:13px;font-weight:600;color:var(--text);padding:12px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.home-block-title .toggle{margin-left:auto;font-size:12px;color:var(--muted);transition:transform .2s}
+.home-block-title.open .toggle{transform:rotate(90deg)}
+.home-block-body{padding:10px;display:none}
+.home-block-body.open{display:block}
+.home-block-body .cards{gap:6px}
+.home-block-body .card{padding:10px;min-height:auto}
+.home-block-body .card-img{width:48px;height:48px;font-size:26px}
+.home-block-body .card-body{padding-right:76px}
+.home-block-body .card-desc{font-size:11.5px}
+.quick-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px}
+.quick-btn{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--text);font-family:inherit;min-height:76px;justify-content:center}
+.quick-btn:active{background:var(--accent);color:#0d2a0d}
+.quick-btn .q-icon{font-size:24px;line-height:1}
+.quick-btn .q-label{font-size:11px;font-weight:600}
+.help-list{list-style:none;padding:0;margin:0;font-size:13px;color:var(--muted);line-height:1.5}
+.help-list li{padding:8px 4px;border-bottom:1px solid var(--line);display:flex;gap:8px}
+.help-list li:last-child{border-bottom:none}
+.help-list .h-num{flex-shrink:0;width:20px;height:20px;background:var(--warn);color:#8a6b00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold}
+.help-list a{color:var(--accent);text-decoration:none}
+.cards{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:600px){.cards{grid-template-columns:1fr 1fr}}
+.card{display:flex;gap:12px;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;text-decoration:none;color:var(--text);position:relative;align-items:flex-start;min-height:80px;backdrop-filter:blur(8px)}
+.card:active{background:var(--panel2)}
+.card.soon{cursor:not-allowed;opacity:.75}
+.card-img{width:64px;height:64px;flex-shrink:0;border-radius:12px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover}
+.card-img .fallback{font-size:30px;line-height:1}
+.card-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;padding-right:76px}
+.card-title{font-size:15px;font-weight:600;line-height:1.25;display:flex;align-items:center;flex-wrap:wrap;gap:4px}
+.card-badges{display:flex;gap:3px;flex-wrap:wrap}
+.badge{font-size:10px;background:rgba(255,255,255,.15);color:var(--text);padding:2px 6px;border-radius:6px;line-height:1;white-space:nowrap}
+.badge.warn{background:rgba(255,225,77,.25);color:#ffe14d}
+body.light .badge.warn{color:#8a6b00}
+.badge.ok{background:rgba(131,223,85,.22);color:var(--accent)}
+.badge.star{background:rgba(255,225,77,.25);color:#ffe14d}
+body.light .badge.star{color:#8a6b00}
+.card-desc{font-size:12.5px;color:var(--muted);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-note{font-size:12px;color:var(--muted);font-style:italic;line-height:1.3;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.card-tags{font-size:11px;line-height:1.4;margin-top:3px;display:flex;flex-wrap:wrap;gap:4px}
+.card-tag{display:inline-block;background:rgba(131,223,85,.15);color:var(--accent);padding:3px 8px;border-radius:10px;border:none;font-size:11px;line-height:1;font-family:inherit}
+.card-tag:active{background:var(--accent);color:#0d2a0d}
+.card-actions{position:absolute;top:10px;right:10px;display:flex;gap:4px}
+.card-action-btn{width:32px;height:32px;background:rgba(255,255,255,.15);border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text)}
+.card-action-btn:active{background:var(--panel2)}
+.card-move-actions{display:none;position:absolute;top:10px;left:10px;flex-direction:column;gap:2px}
+.cards.edit-mode .card-move-actions{display:flex}
+.card-move-btn{width:26px;height:26px;background:rgba(255,255,255,.15);border:1px solid var(--line);border-radius:6px;font-size:11px;color:var(--text);display:flex;align-items:center;justify-content:center}
+.card-move-btn:active{background:var(--accent);color:#0d2a0d}
+.card-move-btn.disabled{opacity:.3;pointer-events:none}
+.group-title{display:flex;align-items:center;gap:6px;min-height:56px;padding:14px;border-radius:14px;background:var(--card);color:var(--text);font-size:15px;font-weight:600;cursor:pointer;margin-bottom:8px;user-select:none;border:1px solid var(--line);backdrop-filter:blur(8px)}
+.group-title:active{background:var(--panel2)}
+.group-title .arrow{margin-left:auto;transition:transform .2s;font-size:12px;color:var(--muted)}
+.group-title.open .arrow{transform:rotate(90deg)}
+.group-title .badge{margin-left:4px}
+.group-title .group-edit-btn{display:none;width:32px;height:32px;background:rgba(255,255,255,.15);border:1px solid var(--line);border-radius:8px;font-size:14px;color:var(--text);align-items:center;justify-content:center;margin-left:6px}
+.slide-content.edit-mode .group-title .group-edit-btn{display:flex}
+.group-body{display:none;padding-left:12px;margin:0 0 10px 8px;border-left:3px solid var(--accent)}
+.group-body.open{display:block}
+.sub-item{display:block;padding:12px 14px;margin-bottom:6px;background:var(--card);border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--text)}
+.sub-item:active{background:var(--panel2)}
+.sub-name{font-size:14.5px;font-weight:600;margin-bottom:3px}
+.sub-desc{font-size:12.5px;color:var(--muted);line-height:1.35}
+.section-label{font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;margin:14px 4px 6px;font-weight:600}
+.section-guide{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden;backdrop-filter:blur(10px)}
+.section-guide summary{font-size:14px;font-weight:600;color:var(--text);padding:14px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px}
+.section-guide summary::-webkit-details-marker{display:none}
+.section-guide summary::before{content:"馃挕";font-size:18px}
+.section-guide summary::after{content:"鈻�";margin-left:auto;font-size:12px;color:var(--muted);transition:transform .2s}
+.section-guide[open] summary::after{transform:rotate(90deg)}
+.section-guide .guide-content{padding:0 14px 14px;font-size:13px;line-height:1.55;color:var(--text)}
+.section-guide .guide-content ul{padding-left:18px;margin:6px 0}
+.section-guide .guide-content li{margin:3px 0}
+.warn-box{background:rgba(255,225,77,.15);border:1px solid var(--warn);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.5;color:var(--text);margin-bottom:12px}
+.guide{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:13.5px;line-height:1.55;color:var(--text);margin-bottom:8px}
+.guide h4{margin:0 0 8px;font-size:14px;color:var(--accent)}
+.guide code{background:rgba(131,223,85,.15);color:var(--accent);padding:1px 5px;border-radius:4px;font-size:12px;word-break:break-all}
+.guide ul{padding-left:18px;margin:6px 0}
+.add-card-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:56px;padding:14px;margin-top:10px;background:rgba(255,255,255,.05);border:2px dashed var(--line);border-radius:14px;color:var(--muted);font-size:15px;font-weight:600}
+.add-card-btn:active{background:var(--panel2);color:var(--text)}
+.settings-content{flex:1;overflow-y:auto;padding:16px}
+.settings-section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px;backdrop-filter:blur(10px)}
+.settings-item{display:flex;align-items:center;gap:12px;min-height:56px;padding:12px 4px;cursor:pointer;border-bottom:1px solid var(--line);color:var(--text);font-size:15px;width:100%;text-align:left;text-decoration:none}
+.settings-item:last-child{border-bottom:none}
+.settings-item:active{background:rgba(255,255,255,.05)}
+.settings-item .si-icon{font-size:24px;flex-shrink:0}
+.settings-item .si-body{flex:1;min-width:0}
+.settings-item .si-title{font-weight:600;font-size:15px}
+.settings-item .si-desc{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.3}
+.settings-item.danger .si-title{color:var(--danger)}
+.settings-item.accent{background:rgba(131,223,85,.12);border-radius:12px;border:none;margin-bottom:6px}
+.settings-item.accent .si-title{color:var(--accent)}
+.settings-title{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:4px 4px 8px;font-weight:600}
+.setting-row{display:flex;align-items:center;gap:10px;min-height:56px;padding:12px 4px;border-bottom:1px solid var(--line)}
+.setting-row:last-child{border-bottom:none}
+.setting-row .sr-label{flex:1;font-size:15px}
+.setting-row select{padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);color:var(--text);font-size:14px;min-width:120px}
+.setting-row select option{background:var(--bg);color:var(--text)}
+.setting-toggle{width:52px;height:32px;background:rgba(255,255,255,.2);border:none;border-radius:16px;position:relative;padding:0;flex-shrink:0;transition:background .2s}
+.setting-toggle::after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.setting-toggle.on{background:var(--accent)}
+.setting-toggle.on::after{transform:translateX(20px)}
+.secret-row{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.secret-value{font-family:monospace;font-size:15px;background:rgba(255,255,255,.1);padding:4px 10px;border-radius:6px;letter-spacing:2px;color:var(--text)}
+.secret-toggle{background:none;border:none;color:var(--accent);font-size:13px;padding:6px 10px;border-radius:6px}
+.editor-content{flex:1;overflow-y:auto;padding:16px 16px 100px}
+.form-group{margin-bottom:14px}
+.form-label{display:block;font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.3px}
+.form-label .req{color:var(--danger)}
+.form-input,.form-textarea,.form-select{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:16px;background:var(--panel);color:var(--text);-webkit-appearance:none}
+.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--accent)}
+.form-textarea{min-height:80px;resize:vertical;line-height:1.4}
+.form-select option{background:var(--bg)}
+.checkbox-row{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;cursor:pointer;font-size:15px;margin-top:8px}
+.checkbox-row input[type="checkbox"]{width:22px;height:22px;accent-color:var(--accent);flex-shrink:0}
+.preview-img{width:100%;max-width:200px;height:120px;object-fit:cover;border-radius:12px;margin-top:8px;border:1px solid var(--line);display:none}
+.preview-img.show{display:block}
+.icon-preview{width:64px;height:64px;object-fit:contain;border-radius:12px;margin-top:8px;border:1px solid var(--line);background:var(--panel);padding:4px;display:none}
+.icon-preview.show{display:block}
+.emoji-picker{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.emoji-btn{width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:22px;display:flex;align-items:center;justify-content:center}
+.emoji-btn.selected{background:rgba(131,223,85,.2);border-color:var(--accent)}
+.badges-picker{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.badge-btn{padding:10px 14px;min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--panel);font-size:14px;color:var(--text);display:flex;align-items:center;gap:4px}
+.badge-btn.selected{background:rgba(131,223,85,.2);border-color:var(--accent);font-weight:600}
+.color-picker{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.color-btn{width:36px;height:36px;border:2px solid var(--line);border-radius:50%;cursor:pointer;padding:0;position:relative;color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;font-family:inherit}
+.color-btn.selected{border-color:var(--accent);border-width:3px;box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
+.form-actions{position:sticky;bottom:0;display:flex;gap:8px;padding:12px 16px;background:var(--header-bg);border-top:1px solid var(--line);margin:0 -16px -100px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0));backdrop-filter:blur(15px)}
+.form-btn{flex:1;min-height:48px;padding:12px 16px;border-radius:12px;font-size:15px;font-weight:600;border:1px solid var(--line);background:var(--panel);color:var(--text)}
+.form-btn.save{background:var(--accent);color:#0d2a0d;border-color:transparent;flex:2}
+.group-edit-row{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px}
+.group-edit-info{flex:1;min-width:0}
+.group-edit-name{font-weight:600;font-size:15px;margin-bottom:2px;word-break:break-word}
+.group-edit-count{font-size:12px;color:var(--muted)}
+.group-edit-actions{display:flex;gap:2px;flex-shrink:0}
+.group-edit-btn{width:32px;height:32px;background:rgba(255,255,255,.15);border:1px solid var(--line);border-radius:8px;font-size:14px;color:var(--text);display:flex;align-items:center;justify-content:center}
+.group-edit-btn.move{font-size:11px}
+.trash-row{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px}
+.trash-info{flex:1;min-width:0}
+.trash-name{font-weight:600;font-size:14px;margin-bottom:2px;word-break:break-word}
+.trash-meta{font-size:11.5px;color:var(--muted)}
+.trash-btn{width:36px;height:36px;background:rgba(131,223,85,.15);border:1px solid var(--accent);border-radius:8px;font-size:16px;color:var(--accent);display:flex;align-items:center;justify-content:center}
+.prompt-overlay,.confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:20px;z-index:850;backdrop-filter:blur(4px)}
+.prompt-overlay.show,.confirm-overlay.show{display:flex}
+.prompt-box,.confirm-box{background:#102027;border:1px solid var(--line);border-radius:16px;padding:20px;max-width:400px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+body.light .prompt-box,body.light .confirm-box{background:#fff}
+.prompt-title,.confirm-title{font-size:17px;font-weight:bold;margin:0 0 12px}
+.prompt-input{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:16px;background:var(--panel);color:var(--text);margin-bottom:14px}
+.prompt-buttons,.confirm-buttons{display:flex;gap:8px;justify-content:flex-end}
+.prompt-btn,.confirm-btn{padding:10px 16px;border-radius:10px;font-size:14px;border:1px solid var(--line);min-height:44px;background:var(--panel);color:var(--text)}
+.prompt-btn.ok,.confirm-btn.ok{background:var(--accent);color:#0d2a0d;border-color:transparent;font-weight:600}
+.confirm-btn.danger{background:var(--danger);color:#fff;border-color:transparent;font-weight:600}
+.confirm-text{font-size:13px;color:var(--muted);line-height:1.5;margin:0 0 16px;white-space:pre-wrap;max-height:60vh;overflow-y:auto}
+.onboarding{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1200;display:none;align-items:center;justify-content:center;padding:20px;overflow-y:auto;backdrop-filter:blur(4px)}
+.onboarding.show{display:flex}
+.onboarding-box{background:#102027;border:1px solid var(--line);border-radius:20px;padding:24px;max-width:520px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.6);max-height:90vh;overflow-y:auto}
+body.light .onboarding-box{background:#fff}
+.onboarding-box h2{margin:0 0 8px;font-size:22px;text-align:center}
+.onboarding-author{text-align:center;font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.5}
+.onboarding-author a{color:var(--accent);text-decoration:underline}
+.onboarding-intro{font-size:14px;color:var(--muted);line-height:1.5;margin:0 0 16px;text-align:center}
+.steps{display:flex;flex-direction:column;gap:14px;margin:20px 0}
+.step{display:flex;gap:14px;align-items:flex-start}
+.step-num{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#0d2a0d;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:16px}
+.step-body{flex:1}
+.step-body b{display:block;font-size:15px;margin-bottom:2px}
+.step-body span{font-size:13px;color:var(--muted)}
+.onboarding-buttons{display:flex;flex-direction:column;gap:8px;margin-top:20px}
+.onboarding-btn{display:block;width:100%;padding:14px;background:var(--accent);color:#0d2a0d;border:none;border-radius:12px;font-size:16px;font-weight:600}
+.onboarding-btn-2{display:block;width:100%;padding:12px;background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:12px;font-size:14px;font-weight:600;text-decoration:none;text-align:center}
+.search-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}
+.search-hint{text-align:center;padding:20px;color:var(--muted);font-size:13px}
+@media(max-width:430px){
+  .tiles{grid-template-columns:repeat(3,1fr);gap:8px}
+  .tile{min-height:100px;padding:10px 6px}
+  .tile-emoji{font-size:27px}
+  .header{gap:2px;padding:6px}
+  .header button{width:38px;height:38px;font-size:17px}
+  .logo{font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <button id="homeBtn">馃彔</button>
+  <a class="logo" href="https://izumrud.data.blog/" target="_blank" rel="noopener">袦械薪褞-褏邪斜 <span>芯褌 小邪写邪 懈写械泄</span></a>
+  <button id="partnerBtn" title="小邪写 懈写械泄">馃尶</button>
+  <button id="searchBtn">馃攳</button>
+  <button id="editBtn">鉁忥笍</button>
+  <button id="settingsBtn">鈿欙笍</button>
+  <button class="burger" id="burgerBtn"><span></span><span></span><span></span></button>
+</header>
+
+<div class="searchbar" id="searchBar">
+  <input id="searchInput" type="search" placeholder="袩芯懈褋泻 锌芯 薪邪蟹胁邪薪懈褞, 芯锌懈褋邪薪懈褞, 褌械谐邪屑鈥�" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <button class="slide-btn" id="searchClose">鉁�</button>
+</div>
+
+<section class="scene" id="scene">
+  <div class="sun"></div>
+  <div class="cloud c1">鈽侊笍</div>
+  <div class="cloud c2">鈽侊笍</div>
+  <div class="cloud c3">鈽侊笍</div>
+  <div class="ground"></div>
+  <div class="rider" id="rider">
+    <div class="wheel bw"></div>
+    <div class="wheel sw"></div>
+    <div class="crank"><div class="pedal pt"></div><div class="pedal pb"></div></div>
+    <svg class="frame" viewBox="0 0 340 320">
+      <g stroke="#c0392b" stroke-width="7" fill="none" stroke-linecap="round">
+        <line x1="110" y1="110" x2="128" y2="30"/>
+        <line x1="110" y1="110" x2="112" y2="18"/>
+        <line x1="128" y1="30" x2="112" y2="18"/>
+        <line x1="110" y1="110" x2="262" y2="196"/>
+        <line x1="128" y1="30" x2="262" y2="196"/>
+      </g>
+      <ellipse cx="128" cy="22" rx="22" ry="8" fill="#5d4037"/>
+      <path d="M92 14 Q112 2 132 14" stroke="#333" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="92" cy="14" r="4" fill="#333"/>
+      <circle cx="132" cy="14" r="4" fill="#333"/>
+    </svg>
+    <svg class="frog" viewBox="0 0 150 150">
+      <ellipse cx="75" cy="140" rx="42" ry="7" fill="rgba(0,0,0,.2)"/>
+      <path d="M58 118 Q40 130 34 128" stroke="#6fbf44" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <ellipse cx="32" cy="128" rx="11" ry="6" fill="#7ed957"/>
+      <ellipse cx="76" cy="92" rx="38" ry="40" fill="#7ed957"/>
+      <ellipse cx="76" cy="100" rx="28" ry="28" fill="#c8f08f"/>
+      <path d="M50 100 Q76 130 102 100" stroke="#a7dd6e" stroke-width="3" fill="none"/>
+      <path d="M56 78 Q40 60 30 52" stroke="#6fbf44" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <circle cx="28" cy="50" r="7" fill="#7ed957"/>
+      <path d="M96 78 Q112 62 122 54" stroke="#6fbf44" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <circle cx="124" cy="52" r="7" fill="#7ed957"/>
+      <circle cx="58" cy="52" r="20" fill="#eaffd0" stroke="#4e9e2e" stroke-width="3"/>
+      <circle cx="96" cy="52" r="20" fill="#eaffd0" stroke="#4e9e2e" stroke-width="3"/>
+      <g class="eye">
+        <circle cx="58" cy="54" r="10" fill="#fff"/>
+        <circle cx="96" cy="54" r="10" fill="#fff"/>
+        <circle cx="60" cy="55" r="5.5" fill="#1a1a1a"/>
+        <circle cx="98" cy="55" r="5.5" fill="#1a1a1a"/>
+        <circle cx="58" cy="53" r="2" fill="#fff"/>
+        <circle cx="96" cy="53" r="2" fill="#fff"/>
+      </g>
+      <path d="M60 82 Q76 96 94 82" stroke="#3f7a1f" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="44" cy="76" rx="7" ry="5" fill="#ff9bb0" opacity=".7"/>
+      <ellipse cx="108" cy="76" rx="7" ry="5" fill="#ff9bb0" opacity=".7"/>
+    </svg>
+  </div>
+</section>
+
+<main id="mainHome">
+  <div class="hero">
+    <h1>袦械薪褞-褏邪斜</h1>
+    <p>袙邪褕懈 褋褋褘谢泻懈, 泻邪薪邪谢褘, 泻褍褉褋褘 懈 懈薪褋褌褉褍屑械薪褌褘 鈥� 胁 芯写薪芯屑 屑械褋褌械.<br>袨褌 <a href="https://izumrud.data.blog/" target="_blank" rel="noopener" style="color:var(--accent)">小邪写 懈写械泄</a> 馃尶</p>
+    <div class="hero-tags">
+      <span>馃啌 袘械褋锌谢邪褌薪芯</span>
+      <span>馃毇 袘械蟹 褉械泻谢邪屑褘</span>
+      <span>馃敀 袛邪薪薪褘械 褌芯谢褜泻芯 褍 胁邪褋</span>
+    </div>
+    <p class="hero-story">袥褟谐褍褕泻邪 械写械褌 锌芯 写芯褉芯谐械 薪邪 胁械谢芯褋懈锌械写械, 邪 胁褘 褌械屑 胁褉械屑械薪械屑 褋芯斜懈褉邪械褌械 褋褋褘谢泻懈. 袨薪邪 泻褉褍褌懈褌 锌械写邪谢懈 鈥� 胁褘 泻褉褍褌懈褌械 褋胁芯褞 谢械薪褌褍. 袪邪蟹薪懈褑邪 褌芯谢褜泻芯 芯写薪邪: 褍 薪械褢 胁 泻芯褉蟹懈薪械 胁械褋褜 懈薪褌械褉薪械褌, 邪 褍 胁邪褋 鈥� 芯写懈薪 褎邪泄谢.</p>
+    <div class="actions">
+      <button class="primary" id="openMenuBtn">馃搨 袨褌泻褉褘褌褜 屑械薪褞</button>
+      <button class="secondary" id="openSearchBtn">馃攳 袩芯懈褋泻</button>
+    </div>
+  </div>
+  <div class="panel" id="favPanel" style="display:none">
+    <b>猸� 袠蟹斜褉邪薪薪芯械</b>
+    <div id="favorites" style="margin-top:12px"></div>
+  </div>
+</main>
+
+<div class="slide" id="menuScreen">
+  <div class="slide-head" id="menuHeader">
+    <button class="slide-back hidden" id="backBtn">鈫�</button>
+    <button class="slide-back" id="menuHome">馃彔</button>
+    <h2 id="menuTitle">袦械薪褞</h2>
+    <button class="slide-btn groups-mode-btn" id="groupsModeBtn">馃搧</button>
+    <button class="slide-btn" id="editModeBtn">鉁忥笍</button>
+  </div>
+  <div class="slide-content" id="menuContent"></div>
+</div>
+
+<div class="slide settings-screen" id="settingsScreen">
+  <div class="slide-head">
+    <button class="slide-back" id="settingsBack">鈫�</button>
+    <h2>袧邪褋褌褉芯泄泻懈</h2>
+  </div>
+  <div class="settings-content">
+    <div class="settings-title">袪械写邪泻褌懈褉芯胁邪薪懈械</div>
+    <div class="settings-section">
+      <button class="settings-item accent" id="btnEditMode">
+        <span class="si-icon">鉁忥笍</span>
+        <span class="si-body"><div class="si-title">袪械写邪泻褌懈褉芯胁邪褌褜 屑械薪褞</div><div class="si-desc">袛芯斜邪胁懈褌褜 褉邪蟹写械谢褘 懈 泻邪褉褌芯褔泻懈</div></span>
+      </button>
+    </div>
+    <div class="settings-title">袙薪械褕薪懈泄 胁懈写</div>
+    <div class="settings-section">
+      <div class="setting-row"><span class="sr-label">馃帹 孝械屑邪</span><select id="setTheme"><option value="dark">孝褢屑薪邪褟</option><option value="light">小胁械褌谢邪褟</option><option value="auto">袗胁褌芯</option></select></div>
+      <div class="setting-row"><span class="sr-label">馃搻 袪邪蟹屑械褉 泻邪褉褌芯褔械泻</span><select id="setCardSize"><option value="standard">小褌邪薪写邪褉褌</option><option value="compact">袣芯屑锌邪泻褌薪褘泄</option><option value="large">袣褉褍锌薪褘泄</option></select></div>
+      <div class="setting-row"><span class="sr-label">馃柤 袩芯泻邪蟹褘胁邪褌褜 锌褉械胁褜褞</span><button class="setting-toggle" id="setShowPreview"></button></div>
+      <div class="setting-row"><span class="sr-label">鉁� 袗薪懈屑邪褑懈懈 褋褑械薪褘</span><button class="setting-toggle" id="setAnimations"></button></div>
+      <div class="setting-row"><span class="sr-label">馃敆 袨褌泻褉褘胁邪褌褜 胁 薪芯胁芯泄 胁泻谢邪写泻械</span><button class="setting-toggle" id="setNewTab"></button></div>
+    </div>
+    <div class="settings-title">袠薪褎芯褉屑邪褑懈褟</div>
+    <div class="settings-section">
+      <div class="settings-item" style="cursor:default"><span class="si-icon">馃搳</span><span class="si-body"><div class="si-title" id="statSections">袪邪蟹写械谢芯胁: 0</div><div class="si-desc" id="statCards">袣邪褉褌芯褔械泻: 0</div></span></div>
+      <div class="settings-item" style="cursor:default"><span class="si-icon">馃彿</span><span class="si-body"><div class="si-title" id="statTags">孝械谐芯胁: 0</div><div class="si-desc" id="statSize">袨斜褗褢屑: 0 袣袘</div></span></div>
+      <button class="settings-item" id="btnAllSections"><span class="si-icon">馃搵</span><span class="si-body"><div class="si-title">袙褋械 褉邪蟹写械谢褘</div><div class="si-desc">小锌懈褋芯泻 褋芯 褋褌邪褌懈褋褌懈泻芯泄</div></span></button>
+      <button class="settings-item" id="btnTrash"><span class="si-icon">馃棏</span><span class="si-body"><div class="si-title">袣芯褉蟹懈薪邪</div><div class="si-desc">袙芯褋褋褌邪薪芯胁懈褌褜 褍写邪谢褢薪薪褘械 泻邪褉褌芯褔泻懈</div></span></button>
+    </div>
+    <div class="settings-title">袛邪薪薪褘械</div>
+    <div class="settings-section">
+      <button class="settings-item" id="btnExport"><span class="si-icon">馃捑</span><span class="si-body"><div class="si-title">小芯褏褉邪薪懈褌褜 胁 JSON</div><div class="si-desc">袪械蟹械褉胁薪邪褟 泻芯锌懈褟</div></span></button>
+      <button class="settings-item" id="btnImport"><span class="si-icon">馃搨</span><span class="si-body"><div class="si-title">袟邪谐褉褍蟹懈褌褜 懈蟹 JSON</div><div class="si-desc">袙芯褋褋褌邪薪芯胁谢械薪懈械 褋 锌褉芯胁械褉泻芯泄</div></span></button>
+      <button class="settings-item" id="btnShareHtml"><span class="si-icon">馃摛</span><span class="si-body"><div class="si-title">袩芯写械谢懈褌褜褋褟 (HTML)</div><div class="si-desc">袨褌锌褉邪胁懈褌褜 写褉褍谐褍</div></span></button>
+      <input type="file" id="fileInput" accept=".json,application/json" style="display:none">
+      <button class="settings-item danger" id="btnReset"><span class="si-icon">鈫╋笍</span><span class="si-body"><div class="si-title">小斜褉芯褋懈褌褜 泻 蟹邪胁芯写褋泻懈屑</div><div class="si-desc">袙械褉薪褍褌褜 锌褍褋褌芯泄 褕邪斜谢芯薪</div></span></button>
+    </div>
+    <div class="settings-title">小械泻褉械褌</div>
+    <div class="settings-section">
+      <div class="secret-row"><span>馃敀 小械泻褉械褌薪芯械 褋谢芯胁芯:</span><span class="secret-value" id="secretValue">鈥⑩�⑩��</span><button class="secret-toggle" id="secretToggle">袩芯泻邪蟹邪褌褜</button></div>
+      <div class="si-desc" style="padding:4px">袙胁械写懈 褋谢芯胁芯 胁 锌芯懈褋泻械, 褔褌芯斜褘 邪泻褌懈胁懈褉芯胁邪褌褜 褋泻褉褘褌褘泄 褉邪蟹写械谢.</div>
+    </div>
+    <div class="settings-title">袩芯屑芯褖褜</div>
+    <div class="settings-section">
+      <button class="settings-item" id="btnHelp"><span class="si-icon">馃摉</span><span class="si-body"><div class="si-title">袣邪泻 锌芯谢褜蟹芯胁邪褌褜褋褟</div><div class="si-desc">袣褉邪褌泻邪褟 懈薪褋褌褉褍泻褑懈褟</div></span></button>
+      <a class="settings-item" href="https://izumrud.data.blog/" target="_blank" rel="noopener"><span class="si-icon">馃尶</span><span class="si-body"><div class="si-title">袩芯谢薪邪褟 懈薪褋褌褉褍泻褑懈褟 薪邪 褋邪泄褌械</div><div class="si-desc">izumrud.data.blog</div></span></a>
+    </div>
+    <div class="settings-title">袨 锌褉懈谢芯卸械薪懈懈</div>
+    <div class="settings-section">
+      <div class="settings-item" style="cursor:default"><span class="si-icon">鈩癸笍</span><span class="si-body"><div class="si-title">袦械薪褞-褏邪斜 v2.6</div><div class="si-desc">袛邪薪薪褘械 褌芯谢褜泻芯 胁 斜褉邪褍蟹械褉械</div></span></div>
+      <a class="settings-item" href="https://izumrud.data.blog/" target="_blank" rel="noopener"><span class="si-icon">馃尶</span><span class="si-body"><div class="si-title">小芯蟹写邪薪芯 胁 小邪写褍 懈写械泄</div><div class="si-desc">Zettelkasten, 胁褌芯褉芯泄 屑芯蟹谐, Obsidian</div></span></a>
+    </div>
+  </div>
+</div>
+
+<div class="slide editor-screen" id="editorScreen">
+  <div class="slide-head"><button class="slide-back" id="editorBack">鈫�</button><h2 id="editorTitle">袪械写邪泻褌懈褉芯胁邪薪懈械</h2></div>
+  <div class="editor-content">
+    <div class="form-group"><label class="form-label">袧邪蟹胁邪薪懈械 <span class="req">*</span></label><input class="form-input" id="fName" type="text" placeholder="袧邪锌褉懈屑械褉: 袦芯泄 褋邪泄褌" autocomplete="off" autocorrect="off"></div>
+    <div class="form-group"><label class="form-label">URL</label><input class="form-input" id="fUrl" type="url" placeholder="https://..." autocomplete="off" autocorrect="off" spellcheck="false"><label class="checkbox-row"><input type="checkbox" id="fSoon"><span>袟邪谐谢褍褕泻邪 芦小泻芯褉芯禄 (斜械蟹 褋褋褘谢泻懈)</span></label></div>
+    <div class="form-group"><label class="form-label">协屑芯写蟹懈</label><input class="form-input" id="fEmoji" type="text" placeholder="馃敆" maxlength="4" style="font-size:24px;text-align:center"><div class="emoji-picker" id="emojiPicker"></div></div>
+    <div class="form-group"><label class="form-label">袨锌懈褋邪薪懈械</label><textarea class="form-textarea" id="fDesc" placeholder="袣芯褉芯褌泻芯械 芯锌懈褋邪薪懈械"></textarea></div>
+    <div class="form-group"><label class="form-label">袩褉械胁褜褞 (URL)</label><input class="form-input" id="fImage" type="url" placeholder="https://...jpg" autocomplete="off" autocorrect="off" spellcheck="false"><img class="preview-img" id="fImagePreview" alt=""></div>
+    <div class="form-group"><label class="form-label">袣芯屑屑械薪褌邪褉懈泄</label><textarea class="form-textarea" id="fNote" placeholder="袥懈褔薪邪褟 蟹邪屑械褌泻邪"></textarea></div>
+    <div class="form-group"><label class="form-label">孝械谐懈 (褔械褉械蟹 蟹邪锌褟褌褍褞)</label><input class="form-input" id="fTags" type="text" placeholder="褌械谐1, 褌械谐2" autocomplete="off" autocorrect="off"></div>
+    <div class="form-group"><label class="form-label">袘械泄写卸懈</label><div class="badges-picker" id="badgesPicker"></div></div>
+    <div class="form-group"><label class="form-label">袪邪蟹写械谢</label><select class="form-select" id="fSection"></select></div>
+    <div class="form-group"><label class="form-label">袚褉褍锌锌邪</label><select class="form-select" id="fGroup"></select><label class="checkbox-row"><input type="checkbox" id="fNewGroup"><span>小芯蟹写邪褌褜 薪芯胁褍褞 谐褉褍锌锌褍</span></label><input class="form-input" id="fNewGroupName" type="text" placeholder="袧邪蟹胁邪薪懈械 谐褉褍锌锌褘" autocomplete="off" autocorrect="off" style="margin-top:8px;display:none"></div>
+  </div>
+  <div class="form-actions"><button class="form-btn" id="editorCancel">袨褌屑械薪邪</button><button class="form-btn save" id="editorSave">小芯褏褉邪薪懈褌褜</button></div>
+</div>
+
+<div class="slide section-editor-screen" id="sectionEditorScreen">
+  <div class="slide-head"><button class="slide-back" id="sectionEditorBack">鈫�</button><h2 id="sectionEditorTitle">袪邪蟹写械谢</h2></div>
+  <div class="editor-content">
+    <div class="form-group"><label class="form-label">袧邪蟹胁邪薪懈械 <span class="req">*</span></label><input class="form-input" id="sName" type="text" placeholder="袧邪锌褉懈屑械褉: 袪邪斜芯褌邪" autocomplete="off" autocorrect="off"></div>
+    <div class="form-group"><label class="form-label">协屑芯写蟹懈 (褎芯谢斜褝泻, 械褋谢懈 薪械褌 懈泻芯薪泻懈)</label><input class="form-input" id="sEmoji" type="text" placeholder="馃搧" maxlength="4" style="font-size:24px;text-align:center"><div class="emoji-picker" id="sectionEmojiPicker"></div></div>
+    <div class="form-group"><label class="form-label">袠泻芯薪泻邪 褉邪蟹写械谢邪 (URL 泻邪褉褌懈薪泻懈)</label><input class="form-input" id="sIcon" type="url" placeholder="https://example.com/logo.png" autocomplete="off" autocorrect="off" spellcheck="false"><img class="icon-preview" id="sIconPreview" alt=""><div class="si-desc" style="padding:4px;font-size:12px">袝褋谢懈 锌褍褋褌芯 鈥� 锌芯锌褉芯斜褍械屑 胁蟹褟褌褜 褎邪胁懈泻芯薪 褋邪泄褌邪 薪懈卸械.</div></div>
+    <div class="form-group"><label class="form-label">小邪泄褌 褉邪蟹写械谢邪 (写芯屑械薪 写谢褟 邪胁褌芯锌芯写谐褉褍蟹泻懈)</label><input class="form-input" id="sSite" type="text" placeholder="example.com" autocomplete="off" autocorrect="off" spellcheck="false"><div class="si-desc" style="padding:4px;font-size:12px">校泻邪蟹褘胁邪泄褌械 褌芯谢褜泻芯 写芯屑械薪 斜械蟹 https:// 鈥� 懈泻芯薪泻邪 锌芯写褌褟薪械褌褋褟 邪胁褌芯屑邪褌懈褔械褋泻懈.</div></div>
+    <div class="form-group"><label class="form-label">肖芯薪 褉邪蟹写械谢邪 (URL)</label><input class="form-input" id="sBg" type="url" placeholder="https://...jpg (芯锌褑懈芯薪邪谢褜薪芯)" autocomplete="off" autocorrect="off" spellcheck="false"><img class="preview-img" id="sBgPreview" alt=""></div>
+    <div class="form-group"><label class="form-label">笑胁械褌 褉邪蟹写械谢邪</label><div class="color-picker" id="colorPicker"></div></div>
+  </div>
+  <div class="form-actions"><button class="form-btn" id="sectionEditorCancel">袨褌屑械薪邪</button><button class="form-btn save" id="sectionEditorSave">小芯褏褉邪薪懈褌褜</button></div>
+</div>
+
+<div class="slide groups-screen" id="groupsScreen">
+  <div class="slide-head"><button class="slide-back" id="groupsBack">鈫�</button><h2 id="groupsTitle">袚褉褍锌锌褘</h2></div>
+  <div class="settings-content" id="groupsContent"></div>
+</div>
+
+<div class="slide groups-screen" id="trashScreen">
+  <div class="slide-head"><button class="slide-back" id="trashBack">鈫�</button><h2>袣芯褉蟹懈薪邪</h2></div>
+  <div class="settings-content" id="trashContent"></div>
+</div>
+
+<div class="prompt-overlay" id="promptOverlay">
+  <div class="prompt-box">
+    <h3 class="prompt-title" id="promptTitle">袙胁械写懈褌械 薪邪蟹胁邪薪懈械</h3>
+    <input class="prompt-input" id="promptInput" type="text" autocomplete="off" autocorrect="off" placeholder="袧邪蟹胁邪薪懈械">
+    <div class="prompt-buttons"><button class="prompt-btn" id="promptCancel">袨褌屑械薪邪</button><button class="prompt-btn ok" id="promptOk">小芯褏褉邪薪懈褌褜</button></div>
+  </div>
+</div>
+
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <h3 class="confirm-title" id="confirmTitle">袩芯写褌胁械褉卸写械薪懈械</h3>
+    <p class="confirm-text" id="confirmText"></p>
+    <div class="confirm-buttons"><button class="confirm-btn" id="confirmCancel">袨褌屑械薪邪</button><button class="confirm-btn danger" id="confirmOk">袨袣</button></div>
+  </div>
+</div>
+
+<div class="onboarding" id="onboardingScreen">
+  <div class="onboarding-box">
+    <h2>馃憢 袛芯斜褉芯 锌芯卸邪谢芯胁邪褌褜!</h2>
+    <p class="onboarding-author">协褌芯 <b>袦械薪褞-褏邪斜</b> 鈥� 锌褉懈谢芯卸械薪懈械 芯褌 <a href="https://izumrud.data.blog/" target="_blank" rel="noopener">小邪写 懈写械泄 馃尶</a></p>
+    <p class="onboarding-intro">啸褉邪薪懈褌械 褋褋褘谢泻懈 薪邪 胁褋褢 薪褍卸薪芯械: 褋邪泄褌褘, 泻邪薪邪谢褘, 泻褍褉褋褘, 懈薪褋褌褉褍屑械薪褌褘. 袙褋褢 胁 芯写薪芯屑 褎邪泄谢械, 褌芯谢褜泻芯 褍 胁邪褋.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body"><b>馃搶 袛芯斜邪胁褜 褋褋褘谢泻褍</b><span>袨褌泻褉芯泄 褉邪蟹写械谢 懈谢懈 薪邪褔薪懈 褋 芦袙褏芯写褟褖懈褏禄</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body"><b>馃搧 袪邪蟹谢芯卸懈 锌芯 褉邪蟹写械谢邪屑</b><span>袚褉褍锌锌褘, 褌械谐懈, 斜械泄写卸懈 鈥� 泻邪泻 褍写芯斜薪芯</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body"><b>馃攳 袧邪泄写懈 褔械褉械蟹 锌芯懈褋泻</b><span>袩芯 薪邪蟹胁邪薪懈褞, 芯锌懈褋邪薪懈褞 懈谢懈 #褌械谐褍</span></div>
+      </div>
+    </div>
+    <div class="hero-tags" style="margin-top:20px">
+      <span>馃啌 袘械褋锌谢邪褌薪芯</span>
+      <span>馃毇 袘械蟹 褉械泻谢邪屑褘</span>
+      <span>馃敀 袛邪薪薪褘械 褌芯谢褜泻芯 褍 胁邪褋</span>
+    </div>
+    <div class="onboarding-buttons">
+      <button class="onboarding-btn" id="onboardingOk">袧邪褔邪褌褜 鈫�</button>
+      <a class="onboarding-btn-2" href="https://izumrud.data.blog/" target="_blank" rel="noopener">袩芯写褉芯斜薪邪褟 懈薪褋褌褉褍泻褑懈褟 薪邪 褋邪泄褌械 馃尶</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var SK='menuHub.v2.6.template';
+var SBG={};
+var EM=['馃幀','馃摵','馃敶','馃幁','馃摴','馃懃','馃寪','馃帗','馃摝','馃洜','馃幆','馃','馃寫','馃悩','馃摲','馃摑','馃搫','馃敀','馃巵','馃摷','猸�','馃攧','馃啎','馃嵖','馃尶','馃挕','馃幍','馃幃','馃摎','馃敆','馃搧','馃搶','鉂わ笍','馃敟','鉁�','馃З'];
+var BG=['猸�','馃攧','馃啎','馃啌','馃寪','馃嚪馃嚭','馃毇VPN','馃摝','馃敁','馃巵'];
+var AVAILABLE_COLORS=['','#83df55','#ff6600','#ff5575','#4a90e2','#9b59b6','#f39c12','#1abc9c','#e91e63'];
+
+function dd(){
+return {
+version:1,
+order:['inbox','start','examples'],
+settings:{secretWord:'xxx',secretActivated:false,theme:'dark',cardSize:'standard',showPreview:true,animations:true,newTab:true,onboardingSeen:false},
+menus:{
+inbox:{title:'袙褏芯写褟褖懈械',emoji:'馃摜',icon:null,site:null,sections:[{label:null,items:[]}]},
+start:{title:'袠薪褋褌褉褍泻褑懈褟',emoji:'馃摉',icon:null,site:null,sections:[{label:null,items:[
+{name:'袣邪泻 写芯斜邪胁懈褌褜 褋褋褘谢泻褍',emoji:'鉃�',url:null,desc:'袨褌泻褉芯泄 褉邪蟹写械谢 鈫� 薪邪卸屑懈 泻邪褉邪薪写邪褕 鈫� 芯褌泻褉芯械褌褋褟 褉械卸懈屑 锌褉邪胁泻懈 鈫� 褌邪锌薪懈 芦鉃� 袛芯斜邪胁懈褌褜 褋褋褘谢泻褍禄.',badges:[],image:null,note:'袟邪锌芯谢薪懈 薪邪蟹胁邪薪懈械, URL, 芯锌懈褋邪薪懈械, 褌械谐懈. 小芯褏褉邪薪懈 鈥� 泻邪褉褌芯褔泻邪 锌芯褟胁懈褌褋褟 胁 褉邪蟹写械谢械.',tags:['懈薪褋褌褉褍泻褑懈褟']},
+{name:'袣邪泻 写芯斜邪胁懈褌褜 褉邪蟹写械谢',emoji:'馃搧',url:null,desc:'袙 褉械卸懈屑械 锌褉邪胁泻懈 薪邪 锌谢懈褌泻邪褏 锌芯褟胁懈褌褋褟 锌谢懈褌泻邪 芦鉃� 袛芯斜邪胁懈褌褜禄. 孝邪锌 鈥� 褎芯褉屑邪 薪芯胁芯谐芯 褉邪蟹写械谢邪.',badges:[],image:null,note:'袟邪写邪泄 薪邪蟹胁邪薪懈械, 褝屑芯写蟹懈, 锌褉懈 卸械谢邪薪懈懈 鈥� 褎芯薪芯胁褍褞 泻邪褉褌懈薪泻褍 懈 褑胁械褌.',tags:['懈薪褋褌褉褍泻褑懈褟']},
+{name:'袣邪泻 褉械写邪泻褌懈褉芯胁邪褌褜 泻邪褉褌芯褔泻褍',emoji:'鉁忥笍',url:null,desc:'袙 褉械卸懈屑械 锌褉邪胁泻懈 薪邪 泻邪卸写芯泄 泻邪褉褌芯褔泻械 械褋褌褜 泻薪芯锌泻懈 鉁忥笍 (褉械写邪泻褌懈褉芯胁邪褌褜) 懈 馃棏锔� (褍写邪谢懈褌褜).',badges:[],image:null,note:'袠谢懈 蟹邪卸屑懈 泻邪褉褌芯褔泻褍 薪邪 0.6 褋械泻 鈥� 芯褌泻褉芯械褌褋褟 褉械写邪泻褌芯褉. 校写邪谢褢薪薪褘械 泻邪褉褌芯褔泻懈 锌芯锌邪写邪褞褌 胁 泻芯褉蟹懈薪褍.',tags:['懈薪褋褌褉褍泻褑懈褟']},
+{name:'袩芯懈褋泻 懈 褌械谐懈',emoji:'馃攳',url:null,desc:'孝邪锌薪懈 馃攳 胁 褕邪锌泻械. 袙胁械写懈 薪邪蟹胁邪薪懈械 懈谢懈 #褌械谐 鈥� 锌芯懈褋泻 褎懈谢褜褌褉褍械褌 锌芯 薪邪蟹胁邪薪懈褞, 芯锌懈褋邪薪懈褞 懈 褌械谐邪屑.',badges:[],image:null,note:'袩芯锌褉芯斜褍泄 胁胁械褋褌懈 #懈薪褋褌褉褍泻褑懈褟, 褔褌芯斜褘 薪邪泄褌懈 褝褌懈 泻邪褉褌芯褔泻懈.',tags:['懈薪褋褌褉褍泻褑懈褟']},
+{name:'袪械蟹械褉胁薪褘械 泻芯锌懈懈',emoji:'馃捑',url:null,desc:'袙 薪邪褋褌褉芯泄泻邪褏: 芦小芯褏褉邪薪懈褌褜 胁 JSON禄 鈥� 褋泻邪褔邪械褌 褎邪泄谢 褋 胁邪褕懈屑懈 写邪薪薪褘屑懈.',badges:['猸�'],image:null,note:'袛械谢邪泄 褝泻褋锌芯褉褌 褉邪蟹 胁 薪械写械谢褞. 袠屑锌芯褉褌 胁芯褋褋褌邪薪芯胁懈褌 写邪薪薪褘械 懈蟹 褎邪泄谢邪. 袩褉懈 懈屑锌芯褉褌械 褎邪泄谢 锌褉芯胁械褉褟械褌褋褟 薪邪 芯褕懈斜泻懈.',tags:['懈薪褋褌褉褍泻褑懈褟']},
+{name:'袩芯写械谢懈褌褜褋褟 褋 写褉褍谐芯屑',emoji:'馃摛',url:null,desc:'袙 薪邪褋褌褉芯泄泻邪褏: 芦袩芯写械谢懈褌褜褋褟 (HTML)禄 鈥� 褋泻邪褔邪械褌 褎邪泄谢 褋芯 胁褋械屑懈 胁邪褕懈屑懈 褋褋褘谢泻邪屑懈 泻邪泻 褋褌邪褌懈褔薪褍褞 胁械斜-褋褌褉邪薪懈褑褍.',badges:[],image:null,note:'袛褉褍谐 芯褌泻褉芯械褌 褎邪泄谢 胁 斜褉邪褍蟹械褉械 懈 褍胁懈写懈褌 胁褋械 胁邪褕懈 褋褋褘谢泻懈. 袪械写邪泻褌懈褉芯胁邪褌褜 芯薪 薪械 褋屑芯卸械褌 鈥� 褝褌芯 锌褉芯褋褌芯 褋锌懈褋芯泻.',tags:['懈薪褋褌褉褍泻褑懈褟']},
+{name:'袣芯褉蟹懈薪邪',emoji:'馃棏',url:null,desc:'校写邪谢褢薪薪褘械 泻邪褉褌芯褔泻懈 薪械 锌褉芯锌邪写邪褞褌 褋褉邪蟹褍 鈥� 锌芯锌邪写邪褞褌 胁 泻芯褉蟹懈薪褍 胁 薪邪褋褌褉芯泄泻邪褏.',badges:[],image:null,note:'袠蟹 泻芯褉蟹懈薪褘 屑芯卸薪芯 胁芯褋褋褌邪薪芯胁懈褌褜 泻邪褉褌芯褔泻褍 懈谢懈 褍写邪谢懈褌褜 械褢 芯泻芯薪褔邪褌械谢褜薪芯.',tags:['懈薪褋褌褉褍泻褑懈褟']}
+]}]},
+examples:{title:'袩褉懈屑械褉褘',emoji:'馃搶',icon:null,site:null,sections:[{label:null,items:[
+{name:'袩褉懈屑械褉 泻邪褉褌芯褔泻懈',emoji:'馃尶',url:'https://izumrud.data.blog/',desc:'协褌芯 锌褉懈屑械褉 泻邪褉褌芯褔泻懈-褋褋褘谢泻懈. 孝邪锌 鈫� 芯褌泻褉芯械褌褋褟 褋邪泄褌.',badges:['猸�','馃寪'],image:null,note:'袨褌褉械写邪泻褌懈褉褍泄 懈谢懈 褍写邪谢懈 褝褌褍 泻邪褉褌芯褔泻褍 懈 写芯斜邪胁褜 褋胁芯褞.',tags:['锌褉懈屑械褉']},
+{name:'袩褉懈屑械褉 泻邪褉褌芯褔泻懈-蟹邪谐谢褍褕泻懈',emoji:'鈴�',url:null,desc:'袟邪谐谢褍褕泻邪 芦小泻芯褉芯禄 鈥� 械褋谢懈 URL 锌芯泻邪 薪械褌.',badges:['馃啎'],image:null,note:'袧械 芯褌泻褉褘胁邪械褌褋褟. 袩褉芯褋褌芯 薪邪锌芯屑懈薪邪薪懈械, 褔褌芯 蟹写械褋褜 斜褍写械褌 褋褋褘谢泻邪.',tags:['锌褉懈屑械褉']}
+]}]}
+}};
+}
+
+var A=null;
+function load(){var s=null;try{s=localStorage.getItem(SK)}catch(e){}
+if(s){try{var p=JSON.parse(s);if(p&&p.menus&&p.order){var d=dd();p.settings=p.settings||{};for(var k in d.settings){if(p.settings[k]===undefined)p.settings[k]=d.settings[k]}
+if(!Array.isArray(p.trash))p.trash=[];
+A=p;return}}catch(e){}}
+A=dd();A.trash=[];save();}
+function save(){try{localStorage.setItem(SK,JSON.stringify(A))}catch(e){}}
+function fav(u){if(!u)return null;try{return'https://icons.duckduckgo.com/ip3/'+new URL(u).hostname+'.ico'}catch(e){return null}}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function bc(b){if(b==='猸�')return'badge star';if(b==='馃啎')return'badge ok';if(b==='馃嚪馃嚭'||b==='馃毇VPN')return'badge warn';return'badge'}
+
+function sectionIconHTML(m){
+  var fallbackEmoji = m.emoji || '馃搧';
+  var iconUrl = m.icon || (m.site
+    ? 'https://icons.duckduckgo.com/ip3/' + m.site.replace(/^https?:\/\//,'').replace(/\/.*$/,'') + '.ico'
+    : null);
+  var spanEmoji = '<span class="tile-emoji-fallback">' + esc(fallbackEmoji) + '</span>';
+  if(!iconUrl) return spanEmoji;
+  return spanEmoji
+    + '<img src="' + esc(iconUrl) + '" alt="" loading="lazy" decoding="async" '
+    + 'onload="this.parentNode.classList.add(\'has-img\')" '
+    + 'onerror="this.remove()">';
+}
+
+function abg(k){var bg=null;if(k&&A.menus[k]&&A.menus[k].background)bg=A.menus[k].background;else if(k&&SBG[k])bg=SBG[k];
+if(bg)CT.style.backgroundImage='linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),url("'+bg+'")';
+else{CT.style.backgroundImage='none';CT.style.background='transparent'}}
+function aps(){var s=A.settings;document.body.classList.remove('light','no-anim');
+var isLight=false;if(s.theme==='light')isLight=true;else if(s.theme==='auto')isLight=!window.matchMedia('(prefers-color-scheme:dark)').matches;
+if(isLight)document.body.classList.add('light');
+if(!s.animations)document.body.classList.add('no-anim');
+if(rider)rider.style.display=s.animations?'':'none';}
+
+function $(id){return document.getElementById(id)}
+var MH=document.querySelector('.header');
+var homeBtn=$('homeBtn'),burger=$('burgerBtn'),searchBtn=$('searchBtn'),editBtn=$('editBtn'),settingsBtn=$('settingsBtn'),searchClose=$('searchClose'),searchBar=$('searchBar'),searchInput=$('searchInput'),partnerBtn=$('partnerBtn');
+var screen=$('menuScreen'),CT=$('menuContent'),backBtn=$('backBtn'),menuHome=$('menuHome'),menuHeader=$('menuHeader'),editModeBtn=$('editModeBtn'),groupsModeBtn=$('groupsModeBtn'),titleEl=$('menuTitle'),scene=$('scene'),rider=$('rider'),mainHome=$('mainHome'),favPanel=$('favPanel');
+var settingsScreen=$('settingsScreen'),settingsBack=$('settingsBack'),btnEditMode=$('btnEditMode'),btnExport=$('btnExport'),btnImport=$('btnImport'),btnReset=$('btnReset'),btnShareHtml=$('btnShareHtml'),btnAllSections=$('btnAllSections'),btnHelp=$('btnHelp'),fileInput=$('fileInput'),secretValue=$('secretValue'),secretToggle=$('secretToggle');
+var setTheme=$('setTheme'),setCardSize=$('setCardSize'),setShowPreview=$('setShowPreview'),setAnimations=$('setAnimations'),setNewTab=$('setNewTab');
+var statSections=$('statSections'),statCards=$('statCards'),statTags=$('statTags'),statSize=$('statSize');
+var editorScreen=$('editorScreen'),editorBack=$('editorBack'),editorCancel=$('editorCancel'),editorSave=$('editorSave'),editorTitle=$('editorTitle');
+var fName=$('fName'),fUrl=$('fUrl'),fSoon=$('fSoon'),fEmoji=$('fEmoji'),fDesc=$('fDesc'),fImage=$('fImage'),fImagePreview=$('fImagePreview'),fNote=$('fNote'),fTags=$('fTags'),fSection=$('fSection'),fGroup=$('fGroup'),fNewGroup=$('fNewGroup'),fNewGroupName=$('fNewGroupName'),emojiPicker=$('emojiPicker'),badgesPicker=$('badgesPicker');
+var sectionEditorScreen=$('sectionEditorScreen'),sectionEditorBack=$('sectionEditorBack'),sectionEditorCancel=$('sectionEditorCancel'),sectionEditorSave=$('sectionEditorSave'),sectionEditorTitle=$('sectionEditorTitle'),sName=$('sName'),sEmoji=$('sEmoji'),sBg=$('sBg'),sBgPreview=$('sBgPreview'),sectionEmojiPicker=$('sectionEmojiPicker'),colorPicker=$('colorPicker');
+var sIcon=$('sIcon'),sIconPreview=$('sIconPreview'),sSite=$('sSite');
+var groupsScreen=$('groupsScreen'),groupsBack=$('groupsBack'),groupsTitle=$('groupsTitle'),groupsContent=$('groupsContent');
+var trashScreen=$('trashScreen'),trashBack=$('trashBack'),trashContent=$('trashContent');
+var btnTrash=$('btnTrash');
+var promptOverlay=$('promptOverlay'),promptTitle=$('promptTitle'),promptInput=$('promptInput'),promptCancel=$('promptCancel'),promptOk=$('promptOk');
+var confirmOverlay=$('confirmOverlay'),confirmTitle=$('confirmTitle'),confirmText=$('confirmText'),confirmCancel=$('confirmCancel'),confirmOk=$('confirmOk');
+var onboardingScreen=$('onboardingScreen'),onboardingOk=$('onboardingOk');
+var openMenuBtn=$('openMenuBtn'),openSearchBtn=$('openSearchBtn');
+
+var current=null,edit=false,helpOpen=false,grpSec=null;
+var es={mode:'edit',sectionKey:null,groupIndex:null,itemIndex:null,selectedEmoji:'馃敆',selectedBadges:[]};
+var ss={mode:'edit',sectionKey:null,selectedEmoji:'馃搧',selectedColor:''};
+
+function rTiles(){
+titleEl.textContent=edit?'袪械写邪泻褌懈褉芯胁邪薪懈械':'袦械薪褞';
+backBtn.classList.add('hidden');
+groupsModeBtn.classList.remove('show');
+CT.classList.toggle('edit-mode',edit);
+current=null;abg(null);
+var h='<div class="tiles'+(edit?' edit-mode':'')+'">';
+A.order.forEach(function(k){var m=A.menus[k];if(!m)return;var t=0;(m.sections||[]).forEach(function(s){if(s.isGuide)return;t+=(s.items||[]).length});
+var cls='tile'+(k==='inbox'?' inbox':'');
+var st=m.color?' style="border-color:'+m.color+';"':'';
+h+='<div class="tile-wrap"><div class="tile-order"><button class="tile-arrow" data-move="up" data-key="'+k+'">鈻�</button><button class="tile-arrow" data-move="down" data-key="'+k+'">鈻�</button></div><button class="'+cls+'" data-section="'+k+'"'+st+'><span class="tile-emoji">'+sectionIconHTML(m)+'</span><span class="tile-name">'+esc(m.title)+'</span><span class="tile-count">'+t+'</span></button><div class="tile-manage"><button class="tile-mng-btn" data-edit-section="'+k+'">鉁忥笍</button><button class="tile-mng-btn" data-del-section="'+k+'">馃棏锔�</button></div></div>'});
+if(edit)h+='<button class="tile tile-add" id="addSectionBtn"><span class="tile-emoji">鉃�</span><span class="tile-name">袛芯斜邪胁懈褌褜</span></button>';
+h+='</div>';
+if(!edit)h+=rHome();
+CT.innerHTML=h;CT.scrollTop=0;rFav()}
+
+function rHome(){
+var h='<div class="home-blocks">',favs=[];
+A.order.forEach(function(k){var m=A.menus[k];if(!m)return;(m.sections||[]).forEach(function(s,gi){if(s.isGuide)return;(s.items||[]).forEach(function(it,ii){if(it.badges&&it.badges.indexOf('猸�')!==-1)favs.push({item:it,section:k,gIdx:gi,iIdx:ii})})})});
+if(favs.length){h+='<div class="home-block"><div class="home-block-title">猸� 袠蟹斜褉邪薪薪芯械<span class="badge">'+favs.length+'</span></div><div class="home-block-body open"><div class="cards">';
+favs.forEach(function(r){h+=rCard(r.item,r.section,r.gIdx,r.iIdx)});h+='</div></div></div>'}
+h+='<div class="home-block"><div class="quick-actions"><button class="quick-btn" id="qaExport"><span class="q-icon">馃搨</span><span class="q-label">协泻褋锌芯褉褌</span></button><button class="quick-btn" id="qaTags"><span class="q-icon">馃寪</span><span class="q-label">孝械谐懈</span></button><button class="quick-btn" id="qaHelp"><span class="q-icon">鉂�</span><span class="q-label">袩芯屑芯褖褜</span></button></div></div>';
+h+='<div class="home-block"><div class="home-block-title'+(helpOpen?' open':'')+'" id="helpTitle">馃摉 袩芯写褋泻邪蟹泻懈<span class="toggle">鈻�</span></div><div class="home-block-body'+(helpOpen?' open':'')+'" id="helpBody"><ul class="help-list"><li><span class="h-num">1</span><span>袨褌泻褉芯泄 褉邪蟹写械谢 芦馃摉 袠薪褋褌褉褍泻褑懈褟禄 鈥� 褌邪屑 胁褋褢 锌芯写褉芯斜薪芯</span></li><li><span class="h-num">2</span><span>袪械卸懈屑 锌褉邪胁泻懈 鈥� 鉁忥笍 胁 褕邪锌泻械</span></li><li><span class="h-num">3</span><span>袛芯斜邪胁懈褌褜 泻邪褉褌芯褔泻褍 鈥� 芦鉃� 袛芯斜邪胁懈褌褜 褋褋褘谢泻褍禄 胁 褉邪蟹写械谢械</span></li><li><span class="h-num">4</span><span>袙胁械写懈 #褌械谐 胁 锌芯懈褋泻械 鈫� 褎懈谢褜褌褉 锌芯 褌械谐褍</span></li><li><span class="h-num">5</span><span>袛械谢邪泄 褝泻褋锌芯褉褌 褉邪蟹 胁 薪械写械谢褞</span></li><li><span class="h-num">6</span><span>袩芯写褉芯斜薪械械 鈥� <a href="https://izumrud.data.blog/" target="_blank" rel="noopener">izumrud.data.blog</a> 馃尶</span></li></ul></div></div></div>';
+return h}
+
+function rCard(item,sk,gi,ii){
+var soon=!item.url,f=fav(item.url),img;
+if(item.image&&A.settings.showPreview!==false)img='<img src="'+esc(item.image)+'" alt="" loading="lazy" onerror="this.remove();this.parentNode.classList.add(\'no-img\')"><span class="fallback" style="display:none">'+esc(item.emoji||'馃敆')+'</span>';
+else if(f)img='<img src="'+f+'" alt="" loading="lazy" onerror="this.remove();this.parentNode.classList.add(\'no-img\')"><span class="fallback" style="display:none">'+esc(item.emoji||'馃敆')+'</span>';
+else img='<span class="fallback">'+esc(item.emoji||'馃敆')+'</span>';
+var bd='';if(item.badges&&item.badges.length){bd='<span class="card-badges">';item.badges.forEach(function(b){bd+='<span class="'+bc(b)+'">'+esc(b)+'</span>'});bd+='</span>'}
+if(item.sub&&item.sub.length){
+var gh='<div class="group-title" data-group="'+esc(item.name)+'"><span>'+esc(item.name)+'</span>'+bd+'<button class="group-edit-btn" data-edit-group="'+esc(item.name)+'">鉁忥笍</button><span class="arrow">鈻�</span></div><div class="group-body" data-group-body="'+esc(item.name)+'"><div class="card-desc" style="padding:8px 12px 4px">'+esc(item.desc||'')+'</div>';
+item.sub.forEach(function(s){gh+='<a class="sub-item" href="'+esc(s.url)+'" target="_blank" rel="noopener"><div class="sub-name">'+esc(s.name)+'</div><div class="sub-desc">'+esc(s.desc||'')+'</div></a>'});
+gh+='</div>';return gh}
+var tg='';if(item.tags&&item.tags.length){tg='<div class="card-tags">';item.tags.forEach(function(t){tg+='<button class="card-tag" data-tag="'+esc(t)+'" type="button">#'+esc(t)+'</button>'});tg+='</div>'}
+var nt='';if(item.note)nt='<div class="card-note">馃挰 '+esc(item.note)+'</div>';
+var tag=soon?'div':'a',ta=soon?'':(A.settings.newTab!==false?' target="_blank" rel="noopener"':'');
+var at=soon?'class="card soon" data-idx="'+ii+'"':'class="card" href="'+esc(item.url)+'"'+ta+' data-idx="'+ii+'"';
+var m=A.menus[sk],sec=m&&m.sections[gi],tot=sec?(sec.items||[]).length:0;
+var cu=ii>0,cd=ii<tot-1;
+return'<'+tag+' '+at+' data-section="'+sk+'" data-group="'+gi+'"><div class="card-move-actions"><button class="card-move-btn'+(cu?'':' disabled')+'" data-card-move="up" data-cs="'+sk+'" data-cg="'+gi+'" data-ci="'+ii+'">鈻�</button><button class="card-move-btn'+(cd?'':' disabled')+'" data-card-move="down" data-cs="'+sk+'" data-cg="'+gi+'" data-ci="'+ii+'">鈻�</button></div><div class="card-img">'+img+'</div><div class="card-body"><div class="card-title"><span>'+esc(item.name)+'</span>'+bd+'</div><div class="card-desc">'+esc(item.desc||'')+'</div>'+nt+tg+'</div><div class="card-actions"><button class="card-action-btn edit" data-edit="1">鉁忥笍</button><button class="card-action-btn del" data-del="1">馃棏锔�</button></div></'+tag+'>'}
+
+function rSec(k){
+var m=A.menus[k];if(!m)return;
+titleEl.textContent=m.title;backBtn.classList.remove('hidden');current=k;abg(k);
+if(edit){groupsModeBtn.classList.add('show');CT.classList.add('edit-mode')}else{groupsModeBtn.classList.remove('show');CT.classList.remove('edit-mode')}
+var h='';
+(m.sections||[]).forEach(function(s,gi){if(s.isGuide){if(s.label)h+='<div class="section-label">'+esc(s.label)+'</div>';return}
+if(s.label)h+='<div class="section-label">'+esc(s.label)+'</div>';
+h+='<div class="cards'+(edit?' edit-mode':'')+'">';
+(s.items||[]).forEach(function(it,ii){h+=rCard(it,k,gi,ii)});
+h+='</div>'});
+h+='<button class="add-card-btn" id="addCardBtn">鉃� 袛芯斜邪胁懈褌褜 褋褋褘谢泻褍</button>';
+CT.innerHTML=h;CT.scrollTop=0}
+
+function rTag(tn){var q=tn.toLowerCase(),f=allI().filter(function(r){var it=r.item;return it.tags&&it.tags.some(function(t){return t.toLowerCase()===q})});
+titleEl.textContent='#'+tn;backBtn.classList.remove('hidden');groupsModeBtn.classList.remove('show');CT.classList.remove('edit-mode');current=null;abg(null);
+if(!f.length){CT.innerHTML='<div class="search-empty">袩芯 褌械谐褍 #'+esc(tn)+' 薪懈褔械谐芯 薪械 薪邪泄写械薪芯</div><button class="add-card-btn" id="tagBackBtn">鈫� 袙械褉薪褍褌褜褋褟 泻 屑械薪褞</button>';return}
+var h='<div class="section-label">袣邪褉褌芯褔械泻 褋 褌械谐芯屑 #'+esc(tn)+': '+f.length+'</div><div class="cards">';
+f.forEach(function(r){h+=rCard(r.item,r.section,r.gIdx,r.iIdx)});h+='</div>';CT.innerHTML=h}
+
+function rTags(){var tm={};allI().forEach(function(r){(r.item.tags||[]).forEach(function(t){tm[t]=(tm[t]||0)+1})});
+var ts=Object.keys(tm).sort();
+titleEl.textContent='袙褋械 褌械谐懈';backBtn.classList.remove('hidden');groupsModeBtn.classList.remove('show');CT.classList.remove('edit-mode');current=null;abg(null);
+if(!ts.length){CT.innerHTML='<div class="search-empty">孝械谐芯胁 锌芯泻邪 薪械褌</div>';return}
+var h='<div class="section-label">袙褋械谐芯 褌械谐芯胁: '+ts.length+'</div><div class="cards">';
+ts.forEach(function(t){h+='<button class="card" data-open-tag="'+esc(t)+'" style="cursor:pointer;text-align:left"><div class="card-img"><span class="fallback">馃彿</span></div><div class="card-body"><div class="card-title"><span>#'+esc(t)+'</span><span class="badge">'+tm[t]+'</span></div></div></button>'});
+h+='</div>';CT.innerHTML=h}
+
+function rAllSec(){titleEl.textContent='袙褋械 褉邪蟹写械谢褘';backBtn.classList.remove('hidden');groupsModeBtn.classList.remove('show');CT.classList.remove('edit-mode');current=null;abg(null);
+var h='<div class="section-label">袙褋械谐芯 褉邪蟹写械谢芯胁: '+A.order.length+'</div><div class="cards">';
+A.order.forEach(function(k){var m=A.menus[k];if(!m)return;var t=0,g=0;(m.sections||[]).forEach(function(s){if(s.isGuide)return;g++;t+=(s.items||[]).length});
+h+='<button class="card" data-open-section="'+k+'" style="cursor:pointer;text-align:left"><div class="card-img"><span class="fallback">'+(m.emoji||'馃搧')+'</span></div><div class="card-body"><div class="card-title"><span>'+esc(m.title)+'</span><span class="badge">'+t+' 泻邪褉褌.</span><span class="badge">'+g+' 谐褉.</span></div></div></button>'});
+h+='</div>';CT.innerHTML=h}
+
+function openGrp(sk){grpSec=sk;var m=A.menus[sk];if(!m)return;groupsTitle.textContent='袚褉褍锌锌褘: '+m.title;rGrp();if(!groupsScreen.classList.contains('show'))ph();groupsScreen.classList.add('show')}
+function closeGrp(){groupsScreen.classList.remove('show');grpSec=null}
+function rGrp(){var m=A.menus[grpSec];if(!m)return;
+var h='',c=0;
+(m.sections||[]).forEach(function(s,idx){if(s.isGuide)return;c++;var cc=(s.items||[]).length;var nm=s.label||'袨褋薪芯胁薪芯械';
+h+='<div class="group-edit-row"><div class="group-edit-info"><div class="group-edit-name">'+esc(nm)+'</div><div class="group-edit-count">'+cc+' 泻邪褉褌芯褔械泻</div></div><div class="group-edit-actions"><button class="group-edit-btn move" data-group-move="up" data-gidx="'+idx+'">鈻�</button><button class="group-edit-btn move" data-group-move="down" data-gidx="'+idx+'">鈻�</button><button class="group-edit-btn" data-group-rename="'+idx+'">鉁忥笍</button><button class="group-edit-btn del" data-group-del="'+idx+'">馃棏锔�</button></div></div>'});
+if(c===0)h+='<div class="search-empty">袚褉褍锌锌 锌芯泻邪 薪械褌</div>';
+h+='<button class="add-card-btn" id="addGroupBtn">鉃� 袛芯斜邪胁懈褌褜 谐褉褍锌锌褍</button>';
+groupsContent.innerHTML=h}
+
+function mvGrp(i,d){var m=A.menus[grpSec];if(!m)return;var s=m.sections[i];if(!s||s.isGuide)return;var n=d==='up'?i-1:i+1;if(n<0||n>=m.sections.length)return;if(m.sections[n]&&m.sections[n].isGuide)return;var t=m.sections[i];m.sections[i]=m.sections[n];m.sections[n]=t;save();rGrp()}
+function rnGrp(i){var m=A.menus[grpSec];if(!m)return;var s=m.sections[i];if(!s)return;shP('袧邪蟹胁邪薪懈械 谐褉褍锌锌褘',s.label||'',function(v){s.label=v.trim()||null;save();rGrp()})}
+function delGrp(i){var m=A.menus[grpSec];if(!m)return;var s=m.sections[i];if(!s)return;var cc=(s.items||[]).length;var nm=s.label||'袨褋薪芯胁薪芯械';
+if(cc>0){shC('袚褉褍锌锌邪 薪械 锌褍褋褌邪','袙 谐褉褍锌锌械 芦'+nm+'禄 械褖褢 '+cc+' 泻邪褉褌芯褔械泻.','ok',function(){});confirmOk.textContent='袩芯薪褟褌薪芯';return}
+shC('校写邪谢懈褌褜 谐褉褍锌锌褍?','袚褉褍锌锌邪 芦'+nm+'禄 斜褍写械褌 褍写邪谢械薪邪.','danger',function(){m.sections.splice(i,1);save();rGrp()})}
+function addGrp(){shP('袧芯胁邪褟 谐褉褍锌锌邪','',function(v){if(!v.trim())return;var m=A.menus[grpSec];if(!m)return;m.sections.push({label:v.trim(),items:[]});save();rGrp()})}
+
+function openTrash(){
+if(!trashScreen.classList.contains('show'))ph();
+trashScreen.classList.add('show');
+renderTrash();}
+function renderTrash(){
+var trash=A.trash||[];
+if(!trash.length){trashContent.innerHTML='<div class="search-empty">袣芯褉蟹懈薪邪 锌褍褋褌邪</div>';return}
+var h='<div class="section-label" style="color:var(--muted)">校写邪谢械薪芯: '+trash.length+'</div>';
+h+='<button class="add-card-btn" id="trashClearAll" style="border-color:var(--danger);color:var(--danger)">馃棏 袨褔懈褋褌懈褌褜 胁褋褢</button>';
+trash.forEach(function(t,i){
+var d=new Date(t.deletedAt);
+var ds=d.toLocaleDateString('ru-RU')+' '+d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+h+='<div class="trash-row"><div class="trash-info"><div class="trash-name">'+esc(t.item.name)+'</div><div class="trash-meta">袠蟹 褉邪蟹写械谢邪 芦'+esc(t.sectionTitle||'')+'禄 路 '+ds+'</div></div><button class="trash-btn" data-restore="'+i+'" title="袙芯褋褋褌邪薪芯胁懈褌褜">鈫╋笍</button><button class="trash-btn" data-purge="'+i+'" title="校写邪谢懈褌褜 薪邪胁褋械谐写邪" style="color:var(--danger);border-color:var(--danger);background:rgba(255,85,117,.12)">鉁�</button></div>'});
+trashContent.innerHTML=h}
+function showConfirmDelete(i){
+shC('校写邪谢懈褌褜 薪邪胁褋械谐写邪?','袙芯褋褋褌邪薪芯胁懈褌褜 褍卸械 薪械 锌芯谢褍褔懈褌褋褟.','danger',function(){A.trash.splice(i,1);save();renderTrash()})}
+function showConfirmClearTrash(){
+shC('袨褔懈褋褌懈褌褜 泻芯褉蟹懈薪褍?','袙褋械 泻邪褉褌芯褔泻懈 胁 泻芯褉蟹懈薪械 斜褍写褍褌 褍写邪谢械薪褘 斜械蟹胁芯蟹胁褉邪褌薪芯.','danger',function(){A.trash=[];save();renderTrash()})}
+
+var pc=null;
+function shP(t,dv,cb){promptTitle.textContent=t;promptInput.value=dv||'';promptOverlay.classList.add('show');pc=cb;setTimeout(function(){try{promptInput.focus()}catch(e){}},200)}
+function hP(){promptOverlay.classList.remove('show');pc=null}
+promptCancel.addEventListener('click',hP);
+promptOk.addEventListener('click',function(){var v=promptInput.value,cb=pc;hP();if(cb)cb(v)});
+promptInput.addEventListener('keydown',function(e){if(e.key==='Enter'){var v=promptInput.value,cb=pc;hP();if(cb)cb(v)}});
+promptOverlay.addEventListener('click',function(e){if(e.target===promptOverlay)hP()});
+
+function bEmoji(){var h='';EM.forEach(function(e){h+='<button class="emoji-btn" data-emoji="'+e+'">'+e+'</button>'});emojiPicker.innerHTML=h}
+function bBadges(){var h='';BG.forEach(function(b){h+='<button class="badge-btn" data-badge="'+esc(b)+'">'+b+'</button>'});badgesPicker.innerHTML=h}
+function bSecSel(){var h='';A.order.forEach(function(k){var m=A.menus[k];if(!m)return;h+='<option value="'+k+'">'+esc(m.title)+'</option>'});fSection.innerHTML=h}
+function bGrpSel(sk){var m=A.menus[sk];var h='<option value="-1">鈥� 斜械蟹 谐褉褍锌锌褘 鈥�</option>';if(m){(m.sections||[]).forEach(function(s,i){if(s.isGuide)return;h+='<option value="'+i+'">'+esc(s.label||'袨褋薪芯胁薪芯械')+'</option>'})}fGroup.innerHTML=h}
+function rfEmoji(){emojiPicker.querySelectorAll('.emoji-btn').forEach(function(b){b.classList.toggle('selected',b.getAttribute('data-emoji')===es.selectedEmoji)})}
+function rfBadges(){badgesPicker.querySelectorAll('.badge-btn').forEach(function(b){var v=b.getAttribute('data-badge');b.classList.toggle('selected',es.selectedBadges.indexOf(v)!==-1)})}
+function updImg(){var u=fImage.value.trim();if(u&&A.settings.showPreview!==false){fImagePreview.src=u;fImagePreview.classList.add('show');fImagePreview.onerror=function(){fImagePreview.classList.remove('show')}}else{fImagePreview.classList.remove('show');fImagePreview.src=''}}
+function tglNG(){var n=fNewGroup.checked;if(n){fGroup.disabled=true;fGroup.style.opacity='.5';fNewGroupName.style.display='block'}else{fGroup.disabled=false;fGroup.style.opacity='1';fNewGroupName.style.display='none';fNewGroupName.value=''}}
+
+function openEd(sk,gi,ii,mode){
+es.mode=mode;es.sectionKey=sk;es.groupIndex=gi;es.itemIndex=ii;
+bSecSel();fSection.value=sk;bGrpSel(sk);fNewGroup.checked=false;fNewGroupName.value='';tglNG();
+if(mode==='edit'){editorTitle.textContent='袪械写邪泻褌懈褉芯胁邪薪懈械';
+var m=A.menus[sk],s=m.sections[gi],it=s.items[ii];
+fName.value=it.name||'';fUrl.value=it.url||'';fSoon.checked=!it.url;fEmoji.value=it.emoji||'';fDesc.value=it.desc||'';fImage.value=it.image||'';fNote.value=it.note||'';fTags.value=(it.tags&&it.tags.length)?it.tags.join(', '):'';
+es.selectedEmoji=it.emoji||'馃敆';es.selectedBadges=(it.badges||[]).slice();fGroup.value=gi}
+else{editorTitle.textContent='袧芯胁邪褟 褋褋褘谢泻邪';
+fName.value='';fUrl.value='';fSoon.checked=false;fEmoji.value='馃敆';fDesc.value='';fImage.value='';fNote.value='';fTags.value='';
+es.selectedEmoji='馃敆';es.selectedBadges=[];
+var m2=A.menus[sk],fg=-1;(m2.sections||[]).forEach(function(s,i){if(!s.isGuide&&fg===-1)fg=i});fGroup.value=fg}
+rfEmoji();rfBadges();updImg();
+if(!editorScreen.classList.contains('show'))ph();
+editorScreen.classList.add('show');
+setTimeout(function(){try{fName.focus()}catch(e){}},350)}
+
+function closeEd(){editorScreen.classList.remove('show')}
+function saveEd(){
+var nm=fName.value.trim();if(!nm){alert('袙胁械写懈褌械 薪邪蟹胁邪薪懈械');return}
+var soon=fSoon.checked,url=soon?null:fUrl.value.trim(),em=fEmoji.value.trim()||'馃敆',ds=fDesc.value.trim(),im=fImage.value.trim()||null,nt=fNote.value.trim();
+var ts=fTags.value.trim(),tg=ts?ts.split(',').map(function(t){return t.trim()}).filter(Boolean):[];
+var ns=fSection.value,ng=parseInt(fGroup.value,10);if(isNaN(ng))ng=-1;
+var cng=fNewGroup.checked,nl=fNewGroupName.value.trim();
+var it={name:nm,emoji:em,url:url,desc:ds,badges:es.selectedBadges.slice(),image:im,note:nt,tags:tg};
+var m=A.menus[ns];if(!m){alert('袪邪蟹写械谢 薪械 薪邪泄写械薪');return}
+if(es.mode==='add'){var tgt;
+if(cng){tgt={label:nl||null,items:[]};m.sections.push(tgt)}
+else if(ng>=0&&m.sections[ng]&&!m.sections[ng].isGuide){tgt=m.sections[ng]}
+else{tgt={label:null,items:[]};m.sections.push(tgt)}
+if(!tgt.items)tgt.items=[];tgt.items.push(it)}
+else{var om=A.menus[es.sectionKey],os=om.sections[es.groupIndex],oi=os.items[es.itemIndex];
+if(oi.sub)it.sub=oi.sub;
+os.items.splice(es.itemIndex,1);
+var tm=A.menus[ns],tgt;
+if(cng){tgt={label:nl||null,items:[]};tm.sections.push(tgt)}
+else if(ng>=0&&tm.sections[ng]&&!tm.sections[ng].isGuide){tgt=tm.sections[ng]}
+else{tgt={label:null,items:[]};tm.sections.push(tgt)}
+if(!tgt.items)tgt.items=[];tgt.items.push(it)}
+clnEmpty(es.mode==='edit'?es.sectionKey:ns);
+if(es.mode==='edit'&&es.sectionKey!==ns)clnEmpty(ns);
+save();closeEd();
+if(current)rSec(current);else rTiles()}
+
+function clnEmpty(sk){var m=A.menus[sk];if(!m)return;m.sections=(m.sections||[]).filter(function(s){if(s.isGuide)return true;return(s.items||[]).length>0})}
+
+function delCard(sk,gi,ii){var m=A.menus[sk],s=m.sections[gi],it=s.items[ii];
+shC('校写邪谢懈褌褜 褋褋褘谢泻褍?','芦'+it.name+'禄 锌械褉械屑械褋褌懈褌褋褟 胁 泻芯褉蟹懈薪褍. 袝褢 屑芯卸薪芯 斜褍写械褌 胁芯褋褋褌邪薪芯胁懈褌褜.','danger',function(){
+s.items.splice(ii,1);
+if(!Array.isArray(A.trash))A.trash=[];
+A.trash.push({item:it,section:sk,sectionTitle:m.title,group:s.label,deletedAt:Date.now()});
+clnEmpty(sk);save();if(current)rSec(current);else rTiles()})}
+
+function mvCard(sk,gi,ii,d){var m=A.menus[sk];if(!m)return;var s=m.sections[gi];if(!s)return;var arr=s.items||[];var n=d==='up'?ii-1:ii+1;if(n<0||n>=arr.length)return;var t=arr[ii];arr[ii]=arr[n];arr[n]=t;save();if(current)rSec(current)}
+
+function bSecEm(){var h='';EM.forEach(function(e){h+='<button class="emoji-btn" data-emoji="'+e+'">'+e+'</button>'});sectionEmojiPicker.innerHTML=h}
+function rfSEm(){sectionEmojiPicker.querySelectorAll('.emoji-btn').forEach(function(b){b.classList.toggle('selected',b.getAttribute('data-emoji')===ss.selectedEmoji)})}
+function updSBg(){var u=sBg.value.trim();if(u){sBgPreview.src=u;sBgPreview.classList.add('show');sBgPreview.onerror=function(){sBgPreview.classList.remove('show')}}else{sBgPreview.classList.remove('show');sBgPreview.src=''}}
+function updateSectionIconPreview(){
+  var u = sIcon.value.trim();
+  if(u){
+    if(!/^https?:\/\//i.test(u)) u = 'https://' + u;
+    sIconPreview.src = u;
+    sIconPreview.classList.add('show');
+    sIconPreview.onerror = function(){ sIconPreview.classList.remove('show'); };
+  } else if(sSite.value.trim()){
+    var domain = sSite.value.trim().replace(/^https?:\/\//,'').replace(/\/.*$/,'');
+    sIconPreview.src = 'https://icons.duckduckgo.com/ip3/' + domain + '.ico';
+    sIconPreview.classList.add('show');
+    sIconPreview.onerror = function(){ sIconPreview.classList.remove('show'); };
+  } else {
+    sIconPreview.classList.remove('show');
+    sIconPreview.src = '';
+  }
+}
+
+function buildColorPicker(){
+var h='';
+AVAILABLE_COLORS.forEach(function(c){
+h+='<button type="button" class="color-btn'+(ss.selectedColor===c?' selected':'')+'" data-color="'+c+'" style="background:'+(c||'transparent')+';border-color:'+(c||'var(--line)')+'">'+(c?'':'鉁�')+'</button>';
+});
+colorPicker.innerHTML=h;
+}
+function refreshColorPicker(){
+colorPicker.querySelectorAll('.color-btn').forEach(function(b){
+b.classList.toggle('selected',(b.getAttribute('data-color')||'')===(ss.selectedColor||''))
+});
+}
+
+function openSec(sk,mode){ss.mode=mode;ss.sectionKey=sk;
+if(mode==='edit'){sectionEditorTitle.textContent='袧邪褋褌褉芯泄泻懈 褉邪蟹写械谢邪';var m=A.menus[sk];sName.value=m.title||'';sEmoji.value=m.emoji||'';ss.selectedEmoji=m.emoji||'馃搧';sBg.value=m.background||'';ss.selectedColor=m.color||'';sIcon.value=m.icon||'';sSite.value=m.site||''}
+else{sectionEditorTitle.textContent='袧芯胁褘泄 褉邪蟹写械谢';sName.value='';sEmoji.value='馃搧';ss.selectedEmoji='馃搧';sBg.value='';ss.selectedColor='';sIcon.value='';sSite.value=''}
+rfSEm();updSBg();buildColorPicker();updateSectionIconPreview();
+if(!sectionEditorScreen.classList.contains('show'))ph();
+sectionEditorScreen.classList.add('show');
+setTimeout(function(){try{sName.focus()}catch(e){}},350)}
+
+function closeSec(){sectionEditorScreen.classList.remove('show')}
+function saveSec(){var nm=sName.value.trim();if(!nm){alert('袙胁械写懈褌械 薪邪蟹胁邪薪懈械 褉邪蟹写械谢邪');return}
+var em=sEmoji.value.trim()||'馃搧',bg=sBg.value.trim(),cl=ss.selectedColor||null;
+var ic=sIcon.value.trim()||null,st=sSite.value.trim()||null;
+if(ic && !/^https?:\/\//i.test(ic)) ic = 'https://' + ic;
+if(st) st = st.replace(/^https?:\/\//,'').replace(/\/.*$/,'');
+if(ss.mode==='add'){var bk='custom_'+Date.now();A.menus[bk]={title:nm,emoji:em,icon:ic,site:st,background:bg||null,color:cl,sections:[{label:null,items:[]}]};A.order.push(bk);if(bg)SBG[bk]=bg}
+else{var m=A.menus[ss.sectionKey];if(m){m.title=nm;m.emoji=em;m.icon=ic;m.site=st;m.background=bg||null;m.color=cl;if(bg)SBG[ss.sectionKey]=bg;else delete SBG[ss.sectionKey]}}
+save();closeSec();rTiles()}
+
+function delSec(sk){var m=A.menus[sk];if(!m)return;var t=0;(m.sections||[]).forEach(function(s){if(s.isGuide)return;t+=(s.items||[]).length});
+if(t>0){shC('袪邪蟹写械谢 薪械 锌褍褋褌','袙 褉邪蟹写械谢械 芦'+m.title+'禄 械褖褢 '+t+' 褋褋褘谢芯泻.','ok',function(){});confirmOk.textContent='袩芯薪褟褌薪芯';return}
+shC('校写邪谢懈褌褜 褉邪蟹写械谢?','袪邪蟹写械谢 芦'+m.title+'禄 斜褍写械褌 褍写邪谢褢薪.','danger',function(){delete A.menus[sk];delete SBG[sk];A.order=A.order.filter(function(k){return k!==sk});save();rTiles()})}
+
+function mvSec(sk,d){var i=A.order.indexOf(sk);if(i===-1)return;var n=d==='up'?i-1:i+1;if(n<0||n>=A.order.length)return;var t=A.order[i];A.order[i]=A.order[n];A.order[n]=t;save();rTiles()}
+
+function openMenu(editMode){
+if(!screen.classList.contains('show'))ph();
+screen.classList.add('show');
+mainHome.style.display='none';scene.style.display='none';
+edit=!!editMode;
+menuHeader.classList.toggle('edit-mode',edit);
+editModeBtn.textContent=edit?'鉁�':'鉁忥笍';
+rTiles()}
+function closeMenu(){screen.classList.remove('show');mainHome.style.display='block';scene.style.display='block';rTiles()}
+
+function goHome(){closeAll();history.pushState({screen:'home'},'','#home')}
+function closeAll(){screen.classList.remove('show');settingsScreen.classList.remove('show');searchBar.classList.remove('show');mainHome.style.display='block';scene.style.display='block'}
+
+function openSearch(){closeAll();searchBar.classList.add('show');setTimeout(function(){try{searchInput.focus()}catch(e){}},350)}
+function closeSearch(){searchBar.classList.remove('show');searchInput.value='';try{searchInput.blur()}catch(e){};goHome()}
+
+function allI(){var l=[];A.order.forEach(function(k){var m=A.menus[k];if(!m)return;(m.sections||[]).forEach(function(s,gi){if(s.isGuide)return;(s.items||[]).forEach(function(it,ii){l.push({item:it,section:k,sectionTitle:m.title,group:s.label,gIdx:gi,iIdx:ii})})})});return l}
+
+function rSearch(q0){
+var q=q0.trim().toLowerCase(),secret=(A.settings.secretWord||'xxx').toLowerCase();
+if(q===secret){A.settings.secretActivated=true;save();
+titleEl.textContent='袩芯懈褋泻';screen.classList.add('show');mainHome.style.display='none';scene.style.display='none';CT.style.background='transparent';CT.style.backgroundImage='none';backBtn.classList.add('hidden');groupsModeBtn.classList.remove('show');CT.classList.remove('edit-mode');current=null;
+CT.innerHTML='<div class="search-empty">馃敁 <b>小泻褉褘褌褘泄 褉邪蟹写械谢 邪泻褌懈胁懈褉芯胁邪薪</b><br><br>袟写械褋褜 斜褍写褍褌 褋褋褘谢泻懈 褋泻褉褘褌芯谐芯 褉邪蟹写械谢邪.</div>';return}
+if(q.charAt(0)==='#'&&q.length>1){rTag(q0.trim().slice(1));screen.classList.add('show');mainHome.style.display='none';scene.style.display='none';return}
+if(q.length<2){titleEl.textContent='袩芯懈褋泻';screen.classList.add('show');mainHome.style.display='none';scene.style.display='none';CT.style.background='transparent';CT.style.backgroundImage='none';backBtn.classList.add('hidden');groupsModeBtn.classList.remove('show');CT.classList.remove('edit-mode');current=null;
+CT.innerHTML='<div class="search-hint">袧邪褔薪懈 胁胁芯写懈褌褜 薪邪蟹胁邪薪懈械 懈谢懈 芯锌懈褋邪薪懈械鈥�</div>';return}
+var f=allI().filter(function(r){var it=r.item;
+return(it.name&&it.name.toLowerCase().indexOf(q)!==-1)||(it.desc&&it.desc.toLowerCase().indexOf(q)!==-1)||(it.note&&it.note.toLowerCase().indexOf(q)!==-1)||(it.tags&&it.tags.some(function(t){return t.toLowerCase().indexOf(q)!==-1}))});
+titleEl.textContent='袩芯懈褋泻';screen.classList.add('show');mainHome.style.display='none';scene.style.display='none';CT.style.background='transparent';CT.style.backgroundImage='none';backBtn.classList.add('hidden');groupsModeBtn.classList.remove('show');CT.classList.remove('edit-mode');current=null;
+if(!f.length){CT.innerHTML='<div class="search-empty">袧懈褔械谐芯 薪械 薪邪泄写械薪芯</div>';return}
+var h='<div class="section-label">袧邪泄写械薪芯: '+f.length+'</div><div class="cards">';
+f.forEach(function(r){h+=rCard(r.item,r.section,r.gIdx,r.iIdx)});h+='</div>';CT.innerHTML=h}
+
+function updStats(){var sc=A.order.length,cc=0,tg={};
+A.order.forEach(function(k){var m=A.menus[k];if(!m)return;(m.sections||[]).forEach(function(s){if(s.isGuide)return;(s.items||[]).forEach(function(it){cc++;(it.tags||[]).forEach(function(t){tg[t]=true})})})});
+var tc=Object.keys(tg).length,sz=Math.round(JSON.stringify(A).length/1024);
+statSections.textContent='袪邪蟹写械谢芯胁: '+sc;statCards.textContent='袣邪褉褌芯褔械泻: '+cc;statTags.textContent='孝械谐芯胁: '+tc;statSize.textContent='袨斜褗褢屑: ~'+sz+' 袣袘'}
+
+function rfSettings(){var s=A.settings;setTheme.value=s.theme||'dark';setCardSize.value=s.cardSize||'standard';
+setShowPreview.classList.toggle('on',s.showPreview!==false);setAnimations.classList.toggle('on',s.animations!==false);setNewTab.classList.toggle('on',s.newTab!==false);
+updStats()}
+
+function openSettings(){closeAll();settingsScreen.classList.add('show');secretValue.textContent='鈥⑩�⑩��';secretToggle.textContent='袩芯泻邪蟹邪褌褜';rfSettings();ph()}
+function closeSettings(){settingsScreen.classList.remove('show');mainHome.style.display='block';scene.style.display='block'}
+
+secretToggle.addEventListener('click',function(){if(secretValue.textContent==='鈥⑩�⑩��'){secretValue.textContent=A.settings.secretWord||'xxx';secretToggle.textContent='小泻褉褘褌褜'}else{secretValue.textContent='鈥⑩�⑩��';secretToggle.textContent='袩芯泻邪蟹邪褌褜'}});
+setTheme.addEventListener('change',function(){A.settings.theme=setTheme.value;save();aps()});
+setCardSize.addEventListener('change',function(){A.settings.cardSize=setCardSize.value;save();aps()});
+setShowPreview.addEventListener('click',function(){A.settings.showPreview=!A.settings.showPreview;save();aps();rfSettings();if(current)rSec(current);else if(screen.classList.contains('show')&&!current)rTiles()});
+setAnimations.addEventListener('click',function(){A.settings.animations=!A.settings.animations;save();aps();rfSettings()});
+setNewTab.addEventListener('click',function(){A.settings.newTab=!A.settings.newTab;save();rfSettings()});
+btnAllSections.addEventListener('click',function(){closeSettings();screen.classList.add('show');mainHome.style.display='none';scene.style.display='none';ph();rAllSec()});
+btnHelp.addEventListener('click',function(){closeSettings();onboardingScreen.classList.add('show')});
+btnEditMode.addEventListener('click',function(){closeSettings();openMenu(true)});
+btnTrash.addEventListener('click',function(){closeSettings();openTrash()});
+
+function askFileName(defaultName, callback){
+  shP('袠屑褟 褎邪泄谢邪', defaultName, function(v){
+    v = (v||'').trim();
+    if(!v) v = defaultName;
+    v = v.replace(/[\\/:*?"<>|]+/g,'_');
+    var isHtml = defaultName.indexOf('.html')!==-1;
+    if(!/\.(json|html)$/i.test(v)){
+      v = v + (isHtml ? '.html' : '.json');
+    }
+    callback(v);
+  });
+}
+
+function doExport(){
+  var d=new Date();
+  var stamp=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+'_'+String(d.getHours()).padStart(2,'0')+String(d.getMinutes()).padStart(2,'0');
+  var defaultName='menu-backup-'+stamp+'.json';
+  askFileName(defaultName, function(name){
+    var data=JSON.stringify(A,null,2);
+    var b=new Blob([data],{type:'application/json'});
+    var u=URL.createObjectURL(b);
+    var a=document.createElement('a');
+    a.href=u;a.download=name;
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(u)},1000);
+  });
+}
+
+function doShare(){var now=new Date();
+var ds=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0')+' '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+var h='<!DOCTYPE html>\n<html lang="ru">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>袦械薪褞 褋褋褘谢芯泻</title>\n<style>\n*{box-sizing:border-box}body{font-family:-apple-system,Roboto,Arial,sans-serif;background:#f4f4f4;color:#222;margin:0;padding:16px;max-width:720px;margin:0 auto;line-height:1.4}h1{font-size:20px;margin:0 0 16px;color:#ff6600}details{background:#fff;border-radius:12px;margin-bottom:12px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}summary{cursor:pointer;font-weight:600;font-size:16px;padding:4px 0;list-style:none;display:flex;align-items:center;gap:8px}summary::-webkit-details-marker{display:none}summary::before{content:"鈻�";font-size:11px;color:#888;transition:transform .2s}details[open] summary::before{transform:rotate(90deg)}.card{display:flex;gap:12px;padding:10px 4px;border-bottom:1px solid #eee;text-decoration:none;color:#222;align-items:flex-start}.card:last-child{border-bottom:none}.card-icon{width:40px;height:40px;border-radius:8px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;overflow:hidden}.card-icon img{width:100%;height:100%;object-fit:cover}.card-body{flex:1;min-width:0}.card-title{font-weight:600;font-size:14px;display:flex;align-items:center;gap:4px;flex-wrap:wrap}.card-desc{font-size:12px;color:#666;margin-top:2px}.badge{font-size:10px;background:#eee;color:#555;padding:1px 5px;border-radius:5px}.badge.warn{background:#ffe4b3;color:#8a5000}.badge.ok{background:#d4f5cc;color:#2d6b1a}.badge.star{background:#fff2b3;color:#8a6b00}.soon{opacity:.6;cursor:not-allowed}.footer{text-align:center;color:#aaa;font-size:11px;margin-top:24px;padding-bottom:24px}.brand{text-align:center;color:#666;font-size:12px;margin-top:8px}.brand a{color:#83df55;text-decoration:none;font-weight:600}\n</style>\n</head>\n<body>\n';
+h+='<h1>馃摎 袦械薪褞 褋褋褘谢芯泻</h1>\n<div style="font-size:12px;color:#888;margin-bottom:16px">小锌懈褋芯泻 芯褌 '+esc(ds)+'</div>\n';
+A.order.forEach(function(k){var m=A.menus[k];if(!m)return;var t=0;(m.sections||[]).forEach(function(s){if(s.isGuide)return;t+=(s.items||[]).length});
+if(t===0)return;
+var sumIcon='';
+var iconUrl = m.icon || (m.site ? 'https://icons.duckduckgo.com/ip3/' + m.site.replace(/^https?:\/\//,'').replace(/\/.*$/,'') + '.ico' : null);
+if(iconUrl){
+  sumIcon='<img src="'+esc(iconUrl)+'" alt="" style="width:20px;height:20px;object-fit:contain;vertical-align:middle;border-radius:4px" onerror="this.remove()"> ';
+} else {
+  sumIcon=(m.emoji||'馃搧')+' ';
+}
+h+='<details>\n<summary>'+sumIcon+esc(m.title)+' <span style="font-weight:400;color:#888;font-size:12px">('+t+')</span></summary>\n';
+(m.sections||[]).forEach(function(s){if(s.isGuide)return;
+if(s.label)h+='<div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin:10px 4px 4px;font-weight:600">'+esc(s.label)+'</div>\n';
+(s.items||[]).forEach(function(it){h+=rShare(it)})});
+h+='</details>\n'});
+h+='<div class="brand">小芯蟹写邪薪芯 胁 <b>袦械薪褞-褏邪斜</b> 芯褌 <a href="https://izumrud.data.blog/" target="_blank" rel="noopener">小邪写 懈写械泄 馃尶</a></div>\n';
+h+='<div class="footer">小谐械薪械褉懈褉芯胁邪薪芯 懈蟹 袦械薪褞-褏邪斜</div>\n</body>\n</html>';
+var stamp=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0')+'_'+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0');
+var defaultName='menu-share-'+stamp+'.html';
+askFileName(defaultName, function(name){
+  var b=new Blob([h],{type:'text/html;charset=utf-8'});
+  var u=URL.createObjectURL(b);
+  var a=document.createElement('a');
+  a.href=u;a.download=name;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(u)},1000);
+});
+}
+
+function rShare(item){var soon=!item.url,f=fav(item.url),ic;
+if(f)ic='<img src="'+esc(f)+'" alt="" onerror="this.remove();this.parentNode.textContent=\''+esc(item.emoji||'馃敆')+'\'">';else ic=esc(item.emoji||'馃敆');
+var bd='';if(item.badges&&item.badges.length){item.badges.forEach(function(b){bd+='<span class="'+bc(b)+'">'+esc(b)+'</span>'})}
+var inn='<div class="card-icon">'+ic+'</div><div class="card-body"><div class="card-title"><span>'+esc(item.name)+'</span>'+bd+'</div>';
+if(item.desc)inn+='<div class="card-desc">'+esc(item.desc)+'</div>';
+inn+='</div>';
+if(soon)return'<div class="card soon">'+inn+'</div>';
+return'<a class="card" href="'+esc(item.url)+'" target="_blank" rel="noopener">'+inn+'</a>'}
+
+btnExport.addEventListener('click',doExport);
+btnShareHtml.addEventListener('click',function(){doShare()});
+btnImport.addEventListener('click',function(){fileInput.click()});
+fileInput.addEventListener('change',function(){var f=fileInput.files&&fileInput.files[0];if(!f)return;var r=new FileReader();
+r.onload=function(e){var result=validateMenuJSON(e.target.result);
+if(result.critical){showImportError(result.critical);fileInput.value='';return}
+if(result.warnings.length){showImportWarnings(result);fileInput.value='';return}
+applyImport(result.data);fileInput.value=''};
+r.readAsText(f)});
+btnReset.addEventListener('click',function(){shC('小斜褉芯褋懈褌褜 泻 蟹邪胁芯写褋泻懈屑','袙褋械 懈蟹屑械薪械薪懈褟 斜褍写褍褌 褍写邪谢械薪褘. 袙械褉薪褢褌褋褟 锌褍褋褌芯泄 褕邪斜谢芯薪. 袩褉芯写芯谢卸懈褌褜?','danger',function(){A=dd();A.trash=[];save();aps();alert('袛邪薪薪褘械 褋斜褉芯褕械薪褘');closeSettings();rTiles()})});
+
+function validateMenuJSON(text){
+  var result={critical:null,warnings:[],fixed:[],data:null,stats:null};
+  var parsed=null;
+  try{parsed=JSON.parse(text)}catch(e){
+    result.critical='JSON 薪械 褔懈褌邪械褌褋褟:\n'+e.message+'\n\n袣邪泻 懈褋锌褉邪胁懈褌褜:\n1. 袨褌泻褉芯泄褌械 褎邪泄谢 胁 斜谢芯泻薪芯褌械.\n2. 袩褉芯胁械褉褜褌械 谢懈褕薪懈械 蟹邪锌褟褌褘械 懈 薪械蟹邪泻褉褘褌褘械 褋泻芯斜泻懈.\n3. 小胁械褉褜褌械褋褜 褋 胁邪谢懈写邪褌芯褉芯屑: jsonlint.com';
+    return result;
+  }
+  if(!parsed||typeof parsed!=='object'||Array.isArray(parsed)){
+    result.critical='肖邪泄谢 写芯谢卸械薪 褋芯写械褉卸邪褌褜 芯斜褗械泻褌 {...}, 邪 薪械 '+(Array.isArray(parsed)?'屑邪褋褋懈胁':'写褉褍谐芯械 蟹薪邪褔械薪懈械')+'.';
+    return result;
+  }
+  if(!parsed.menus||typeof parsed.menus!=='object'||Array.isArray(parsed.menus)){
+    result.critical='袨褌褋褍褌褋褌胁褍械褌 锌芯谢械 "menus" 懈谢懈 芯薪芯 薪械 褟胁谢褟械褌褋褟 芯斜褗械泻褌芯屑.\n\n袙芯蟹屑芯卸薪芯, 褝褌芯 薪械 褎邪泄谢 屑械薪褞-褏邪斜邪.';
+    return result;
+  }
+  if(!Array.isArray(parsed.order)){
+    result.critical='袨褌褋褍褌褋褌胁褍械褌 锌芯谢械 "order" 懈谢懈 芯薪芯 薪械 褟胁谢褟械褌褋褟 屑邪褋褋懈胁芯屑.\n\n袩芯谢械 "order" 写芯谢卸薪芯 褋芯写械褉卸邪褌褜 褋锌懈褋芯泻 泻谢褞褔械泄 褉邪蟹写械谢芯胁.';
+    return result;
+  }
+  if(!parsed.order.length){
+    result.critical='小锌懈褋芯泻 褉邪蟹写械谢芯胁 锌褍褋褌.\n\n肖邪泄谢 薪械 褋芯写械褉卸懈褌 薪懈 芯写薪芯谐芯 褉邪蟹写械谢邪.';
+    return result;
+  }
+  var d=dd();
+  if(!parsed.settings||typeof parsed.settings!=='object'){
+    parsed.settings=d.settings;
+    result.fixed.push('袩芯谢械 "settings" 芯褌褋褍褌褋褌胁芯胁邪谢芯 鈥� 写芯斜邪胁谢械薪芯 褋芯 褋褌邪薪写邪褉褌薪褘屑懈 薪邪褋褌褉芯泄泻邪屑懈.');
+  } else {
+    for(var sk in d.settings){
+      if(parsed.settings[sk]===undefined){
+        parsed.settings[sk]=d.settings[sk];
+        result.fixed.push('袧邪褋褌褉芯泄泻邪 "'+sk+'" 芯褌褋褍褌褋褌胁芯胁邪谢邪 鈥� 写芯斜邪胁谢械薪邪 锌芯 褍屑芯谢褔邪薪懈褞.');
+      }
+    }
+  }
+  if(!Array.isArray(parsed.trash))parsed.trash=[];
+  var validOrder=[],totalCards=0,totalGroups=0;
+  parsed.order.forEach(function(k){
+    var m=parsed.menus[k];
+    if(!m||typeof m!=='object'){
+      result.warnings.push('袪邪蟹写械谢 "'+k+'" 褍泻邪蟹邪薪 胁 order, 薪芯 芯褌褋褍褌褋褌胁褍械褌 胁 menus. 袩褉芯锌褍褖械薪.');
+      return;
+    }
+    if(!m.title||typeof m.title!=='string'||!m.title.trim()){
+      m.title='袪邪蟹写械谢 '+(validOrder.length+1);
+      result.fixed.push('校 褉邪蟹写械谢邪 "'+k+'" 薪械 斜褘谢芯 薪邪蟹胁邪薪懈褟 鈥� 写邪薪芯 芦'+m.title+'禄.');
+    }
+    if(!m.emoji)m.emoji='馃搧';
+    if(m.icon===undefined)m.icon=null;
+    if(m.site===undefined)m.site=null;
+    if(m.icon!==null && typeof m.icon!=='string'){m.icon=null;result.fixed.push('校 褉邪蟹写械谢邪 "'+m.title+'" 锌芯谢械 icon 斜褘谢芯 薪械 褋褌褉芯泻芯泄 鈥� 芯斜薪褍谢械薪芯.');}
+    if(m.site!==null && typeof m.site!=='string'){m.site=null;result.fixed.push('校 褉邪蟹写械谢邪 "'+m.title+'" 锌芯谢械 site 斜褘谢芯 薪械 褋褌褉芯泻芯泄 鈥� 芯斜薪褍谢械薪芯.');}
+    if(!Array.isArray(m.sections)){
+      m.sections=[];
+      result.fixed.push('校 褉邪蟹写械谢邪 "'+m.title+'" 薪械 斜褘谢芯 褋褌褉褍泻褌褍褉褘 sections 鈥� 褋芯蟹写邪薪邪 锌褍褋褌邪褟.');
+    }
+    var cleanSections=[];
+    m.sections.forEach(function(s,si){
+      if(!s||typeof s!=='object'){result.warnings.push('袪邪蟹写械谢 "'+m.title+'": 谐褉褍锌锌邪 鈩�'+(si+1)+' 懈屑械械褌 薪械胁械褉薪褘泄 褎芯褉屑邪褌. 袩褉芯锌褍褖械薪邪.');return}
+      if(!s.label&&!s.isGuide){s.label=null}
+      if(s.isGuide){cleanSections.push(s);return}
+      if(!Array.isArray(s.items)){
+        s.items=[];
+        result.fixed.push('袪邪蟹写械谢 "'+m.title+'": 褍 谐褉褍锌锌褘 薪械 斜褘谢芯 锌芯谢褟 items 鈥� 褋芯蟹写邪薪芯 锌褍褋褌芯械.');
+      }
+      var cleanItems=[];
+      s.items.forEach(function(it,ii){
+        if(!it||typeof it!=='object'){result.warnings.push('袪邪蟹写械谢 "'+m.title+'": 泻邪褉褌芯褔泻邪 鈩�'+(ii+1)+' 懈屑械械褌 薪械胁械褉薪褘泄 褎芯褉屑邪褌. 袩褉芯锌褍褖械薪邪.');return}
+        if(!it.name||typeof it.name!=='string'||!it.name.trim()){
+          result.warnings.push('袪邪蟹写械谢 "'+m.title+'": 泻邪褉褌芯褔泻邪 鈩�'+(ii+1)+' 斜械蟹 薪邪蟹胁邪薪懈褟. 袩褉芯锌褍褖械薪邪.');
+          return;
+        }
+        if(!it.emoji)it.emoji='馃敆';
+        if(!Array.isArray(it.badges)){it.badges=[];result.fixed.push('袣邪褉褌芯褔泻邪 "'+it.name+'": 斜械泄写卸懈 薪械 胁 褎芯褉屑邪褌械 屑邪褋褋懈胁邪 鈥� 蟹邪屑械薪械薪褘 薪邪 锌褍褋褌芯泄.')}
+        if(!Array.isArray(it.tags)){it.tags=[];result.fixed.push('袣邪褉褌芯褔泻邪 "'+it.name+'": 褌械谐懈 薪械 胁 褎芯褉屑邪褌械 屑邪褋褋懈胁邪 鈥� 蟹邪屑械薪械薪褘 薪邪 锌褍褋褌芯泄.')}
+        if(it.note===undefined)it.note='';
+        if(it.desc===undefined)it.desc='';
+        if(it.image===undefined)it.image=null;
+        if(it.url===undefined)it.url=null;
+        if(!it.url&&(!it.badges||it.badges.indexOf('馃啎')===-1)){
+          it.badges=it.badges||[];
+          if(it.badges.indexOf('馃啎')===-1)it.badges.push('馃啎');
+          result.fixed.push('袣邪褉褌芯褔泻邪 "'+it.name+'" 斜褘谢邪 斜械蟹 URL 鈥� 锌芯屑械褔械薪邪 泻邪泻 芦小泻芯褉芯禄 馃啎.');
+        }
+        cleanItems.push(it);
+        totalCards++;
+      });
+      s.items=cleanItems;
+      cleanSections.push(s);
+      totalGroups++;
+    });
+    m.sections=cleanSections;
+    validOrder.push(k);
+  });
+  if(!validOrder.length){
+    result.critical='袩芯褋谢械 锌褉芯胁械褉泻懈 薪械 芯褋褌邪谢芯褋褜 薪懈 芯写薪芯谐芯 泻芯褉褉械泻褌薪芯谐芯 褉邪蟹写械谢邪.\n\n袙芯蟹屑芯卸薪芯, 褎邪泄谢 锌芯胁褉械卸写褢薪.';
+    return result;
+  }
+  if(validOrder.length!==parsed.order.length){
+    result.fixed.push('袙 order 斜褘谢芯 '+parsed.order.length+' 褉邪蟹写械谢芯胁, 芯褋褌邪谢芯褋褜 '+validOrder.length+'.');
+  }
+  parsed.order=validOrder;
+  result.data=parsed;
+  result.stats={sections:validOrder.length,cards:totalCards,groups:totalGroups};
+  return result;
+}
+
+function showImportError(message){
+  confirmTitle.textContent='鉂� 袠屑锌芯褉褌 薪械胁芯蟹屑芯卸械薪';
+  confirmText.textContent=message;
+  confirmOk.className='confirm-btn ok';
+  confirmOk.textContent='袩芯薪褟褌薪芯';
+  confirmCancel.style.display='none';
+  confirmOverlay.classList.add('show');
+  cc=null;
+}
+
+function showImportWarnings(result){
+  var h='袧邪泄写械薪芯 锌褉芯斜谢械屑: '+result.warnings.length+'.\n\n';
+  if(result.fixed.length){
+    h+='馃敡 袗胁褌芯屑邪褌懈褔械褋泻懈 懈褋锌褉邪胁谢械薪芯 ('+result.fixed.length+'):\n';
+    result.fixed.slice(0,5).forEach(function(f){h+='鈥� '+f+'\n'});
+    if(result.fixed.length>5)h+='鈥� ...懈 械褖褢 '+(result.fixed.length-5)+'\n';
+    h+='\n';
+  }
+  h+='鈿狅笍 袩褉芯斜谢械屑褘 ('+result.warnings.length+'):\n';
+  result.warnings.slice(0,5).forEach(function(w){h+='鈥� '+w+'\n'});
+  if(result.warnings.length>5)h+='鈥� ...懈 械褖褢 '+(result.warnings.length-5)+'\n';
+  h+='\n袩芯褋谢械 懈屑锌芯褉褌邪:\n';
+  h+='鉁� 袪邪蟹写械谢芯胁: '+result.stats.sections+'\n';
+  h+='鉁� 袣邪褉褌芯褔械泻: '+result.stats.cards+'\n';
+  h+='鉁� 袚褉褍锌锌: '+result.stats.groups;
+
+  confirmTitle.textContent='鈿狅笍 袠屑锌芯褉褌 褋 蟹邪屑械褔邪薪懈褟屑懈';
+  confirmText.textContent=h;
+  confirmOk.className='confirm-btn ok';
+  confirmOk.textContent='袠屑锌芯褉褌懈褉芯胁邪褌褜';
+  confirmCancel.style.display='';
+  confirmOverlay.classList.add('show');
+
+  cc=function(){applyImport(result.data);closeSettings();rTiles()};
+}
+
+function applyImport(data){
+  A=data;
+  save();
+  aps();
+  closeSettings();
+  rTiles();
+}
+
+var cc=null;
+function shC(t,tx,ty,cb){confirmTitle.textContent=t;confirmText.textContent=tx;confirmOk.className='confirm-btn '+(ty==='danger'?'danger':'ok');confirmOk.textContent='袨袣';confirmCancel.style.display='';confirmOverlay.classList.add('show');cc=cb}
+function hC(){confirmOverlay.classList.remove('show');cc=null}
+confirmCancel.addEventListener('click',function(){hC();confirmCancel.style.display=''});
+confirmOk.addEventListener('click',function(){var cb=cc;hC();confirmCancel.style.display='';if(cb)cb()});
+confirmOverlay.addEventListener('click',function(e){if(e.target===confirmOverlay){hC();confirmCancel.style.display=''}});
+
+var hd=0;
+function ph(){hd++;try{history.pushState({level:hd},'')}catch(e){}}
+window.addEventListener('popstate',function(){
+if(hd<=0)return;hd--;
+if(onboardingScreen.classList.contains('show')){onboardingScreen.classList.remove('show');A.settings.onboardingSeen=true;save();return}
+if(promptOverlay.classList.contains('show')){hP();return}
+if(confirmOverlay.classList.contains('show')){hC();return}
+if(trashScreen.classList.contains('show')){trashScreen.classList.remove('show');return}
+if(groupsScreen.classList.contains('show')){closeGrp();return}
+if(sectionEditorScreen.classList.contains('show')){closeSec();return}
+if(editorScreen.classList.contains('show')){closeEd();return}
+if(settingsScreen.classList.contains('show')){closeSettings();return}
+if(searchBar.classList.contains('show')){closeSearch();return}
+if(screen.classList.contains('show')&&current){rTiles();return}
+if(screen.classList.contains('show')&&titleEl.textContent.indexOf('#')===0){rTiles();return}
+if(screen.classList.contains('show')&&titleEl.textContent==='袙褋械 褌械谐懈'){rTiles();return}
+if(screen.classList.contains('show')&&titleEl.textContent==='袙褋械 褉邪蟹写械谢褘'){rTiles();return}
+if(screen.classList.contains('show')){screen.classList.remove('show');mainHome.style.display='block';scene.style.display='block';rTiles();return}});
+
+burger.addEventListener('click',function(){openMenu(false)});
+backBtn.addEventListener('click',rTiles);
+menuHome.addEventListener('click',function(){if(current)rTiles();else closeMenu()});
+editBtn.addEventListener('click',function(){openMenu(true)});
+settingsBtn.addEventListener('click',openSettings);
+settingsBack.addEventListener('click',closeSettings);
+partnerBtn.addEventListener('click',function(){window.open('https://izumrud.data.blog/','_blank','noopener')});
+editModeBtn.addEventListener('click',function(){edit=!edit;menuHeader.classList.toggle('edit-mode',edit);editModeBtn.textContent=edit?'鉁�':'鉁忥笍';if(current)rSec(current);else rTiles()});
+groupsModeBtn.addEventListener('click',function(){if(current)openGrp(current)});
+homeBtn.addEventListener('click',goHome);
+openMenuBtn.addEventListener('click',function(){openMenu(false)});
+openSearchBtn.addEventListener('click',openSearch);
+searchBtn.addEventListener('click',function(){if(searchBar.classList.contains('show'))closeSearch();else openSearch()});
+searchClose.addEventListener('click',closeSearch);
+editorBack.addEventListener('click',closeEd);
+editorCancel.addEventListener('click',closeEd);
+editorSave.addEventListener('click',saveEd);
+sectionEditorBack.addEventListener('click',closeSec);
+sectionEditorCancel.addEventListener('click',closeSec);
+sectionEditorSave.addEventListener('click',saveSec);
+groupsBack.addEventListener('click',function(){closeGrp();if(current)rSec(current)});
+trashBack.addEventListener('click',function(){trashScreen.classList.remove('show');closeSettings()});
+
+trashContent.addEventListener('click',function(e){
+var rb=e.target.closest('[data-restore]');
+if(rb){e.preventDefault();var i=parseInt(rb.getAttribute('data-restore'),10);
+var t=A.trash[i];if(!t)return;
+var m=A.menus[t.section];
+if(!m){alert('袪邪蟹写械谢 "'+t.sectionTitle+'" 斜芯谢褜褕械 薪械 褋褍褖械褋褌胁褍械褌. 袣邪褉褌芯褔泻邪 斜褍写械褌 胁芯褋褋褌邪薪芯胁谢械薪邪 胁 芦袙褏芯写褟褖懈械禄.');m=A.menus['inbox'];}
+if(!m){alert('袙芯褋褋褌邪薪芯胁懈褌褜 薪械泻褍写邪.');return;}
+var grp=m.sections[0];
+if(!grp){grp={label:null,items:[]};m.sections.push(grp);}
+if(!grp.items)grp.items=[];
+grp.items.push(t.item);
+A.trash.splice(i,1);
+save();renderTrash();return}
+var pb=e.target.closest('[data-purge]');
+if(pb){e.preventDefault();var i2=parseInt(pb.getAttribute('data-purge'),10);showConfirmDelete(i2);return}
+if(e.target.closest('#trashClearAll')){e.preventDefault();showConfirmClearTrash();return}});
+
+groupsContent.addEventListener('click',function(e){
+var mb=e.target.closest('[data-group-move]');if(mb){e.preventDefault();e.stopPropagation();mvGrp(parseInt(mb.getAttribute('data-gidx'),10),mb.getAttribute('data-group-move'));return}
+var rb=e.target.closest('[data-group-rename]');if(rb){e.preventDefault();e.stopPropagation();rnGrp(parseInt(rb.getAttribute('data-group-rename'),10));return}
+var db=e.target.closest('[data-group-del]');if(db){e.preventDefault();e.stopPropagation();delGrp(parseInt(db.getAttribute('data-group-del'),10));return}
+if(e.target.closest('#addGroupBtn')){e.preventDefault();addGrp();return}});
+
+sectionEmojiPicker.addEventListener('click',function(e){var b=e.target.closest('.emoji-btn');if(!b)return;ss.selectedEmoji=b.getAttribute('data-emoji');sEmoji.value=ss.selectedEmoji;rfSEm()});
+sBg.addEventListener('input',updSBg);
+sIcon.addEventListener('input',updateSectionIconPreview);
+sSite.addEventListener('input',updateSectionIconPreview);
+colorPicker.addEventListener('click',function(e){
+var b=e.target.closest('.color-btn');
+if(!b)return;
+ss.selectedColor=b.getAttribute('data-color')||'';
+refreshColorPicker();
+});
+emojiPicker.addEventListener('click',function(e){var b=e.target.closest('.emoji-btn');if(!b)return;es.selectedEmoji=b.getAttribute('data-emoji');fEmoji.value=es.selectedEmoji;rfEmoji()});
+badgesPicker.addEventListener('click',function(e){var b=e.target.closest('.badge-btn');if(!b)return;var v=b.getAttribute('data-badge');var i=es.selectedBadges.indexOf(v);if(i===-1)es.selectedBadges.push(v);else es.selectedBadges.splice(i,1);rfBadges()});
+fImage.addEventListener('input',updImg);
+fSection.addEventListener('change',function(){bGrpSel(fSection.value)});
+fSoon.addEventListener('change',function(){fUrl.disabled=fSoon.checked;fUrl.style.opacity=fSoon.checked?'.5':'1'});
+fNewGroup.addEventListener('change',tglNG);
+
+CT.addEventListener('click',function(e){
+var tagBtn=e.target.closest('.card-tag');if(tagBtn){e.preventDefault();e.stopPropagation();var tn=tagBtn.getAttribute('data-tag');if(tn){ph();rTag(tn)}return}
+var otb=e.target.closest('[data-open-tag]');if(otb){e.preventDefault();e.stopPropagation();var tg=otb.getAttribute('data-open-tag');if(tg){ph();rTag(tg)}return}
+var osb=e.target.closest('[data-open-section]');if(osb){e.preventDefault();e.stopPropagation();var sk=osb.getAttribute('data-open-section');if(sk){ph();rSec(sk)}return}
+if(e.target.closest('#tagBackBtn')){e.preventDefault();rTiles();return}
+var ab=e.target.closest('.tile-arrow');if(ab){e.preventDefault();e.stopPropagation();mvSec(ab.getAttribute('data-key'),ab.getAttribute('data-move'));return}
+var cmb=e.target.closest('[data-card-move]');if(cmb){e.preventDefault();e.stopPropagation();mvCard(cmb.getAttribute('data-cs'),parseInt(cmb.getAttribute('data-cg'),10),parseInt(cmb.getAttribute('data-ci'),10),cmb.getAttribute('data-card-move'));return}
+var esb=e.target.closest('.tile-mng-btn[data-edit-section]');if(esb){e.preventDefault();e.stopPropagation();openSec(esb.getAttribute('data-edit-section'),'edit');return}
+var dsb=e.target.closest('.tile-mng-btn[data-del-section]');if(dsb){e.preventDefault();e.stopPropagation();delSec(dsb.getAttribute('data-del-section'));return}
+if(e.target.closest('#addSectionBtn')){e.preventDefault();openSec(null,'add');return}
+if(e.target.closest('#qaExport')){e.preventDefault();doExport();return}
+if(e.target.closest('#qaTags')){e.preventDefault();ph();rTags();return}
+if(e.target.closest('#qaHelp')){e.preventDefault();helpOpen=!helpOpen;var ht=document.getElementById('helpTitle'),hb=document.getElementById('helpBody');if(ht)ht.classList.toggle('open',helpOpen);if(hb)hb.classList.toggle('open',helpOpen);if(hb&&helpOpen)hb.scrollIntoView({behavior:'smooth',block:'nearest'});return}
+if(e.target.closest('#helpTitle')){e.preventDefault();helpOpen=!helpOpen;var ht2=document.getElementById('helpTitle'),hb2=document.getElementById('helpBody');if(ht2)ht2.classList.toggle('open',helpOpen);if(hb2)hb2.classList.toggle('open',helpOpen);return}
+var eb=e.target.closest('.card-action-btn.edit');if(eb){e.preventDefault();e.stopPropagation();var c=eb.closest('.card, .soon');openEd(c.getAttribute('data-section'),parseInt(c.getAttribute('data-group'),10),parseInt(c.getAttribute('data-idx'),10),'edit');return}
+var db2=e.target.closest('.card-action-btn.del');if(db2){e.preventDefault();e.stopPropagation();var c2=db2.closest('.card, .soon');delCard(c2.getAttribute('data-section'),parseInt(c2.getAttribute('data-group'),10),parseInt(c2.getAttribute('data-idx'),10));return}
+if(e.target.closest('#addCardBtn')){if(current)openEd(current,-1,-1,'add');return}
+var tile=e.target.closest('.tile');if(tile){var k2=tile.getAttribute('data-section');if(k2){if(!current)ph();rSec(k2)}return}
+var grp=e.target.closest('.group-title');if(grp){
+var geb=e.target.closest('.group-edit-btn');
+if(geb){e.preventDefault();e.stopPropagation();var gn=geb.getAttribute('data-edit-group');
+if(current&&gn){var m=A.menus[current],gi=-1;(m.sections||[]).forEach(function(s,i){if((s.label||'袨褋薪芯胁薪芯械')===gn)gi=i});if(gi>=0){grpSec=current;rnGrp(gi)}}return}
+var gid=grp.getAttribute('data-group'),body=CT.querySelector('[data-group-body="'+gid.replace(/"/g,'\\"')+'"]');
+if(body){body.classList.toggle('open');grp.classList.toggle('open')}return}});
+
+var lpt=null;
+CT.addEventListener('touchstart',function(e){var c=e.target.closest('.card');if(!c||e.target.closest('.card-action-btn, .card-move-btn'))return;
+lpt=setTimeout(function(){openEd(c.getAttribute('data-section'),parseInt(c.getAttribute('data-group'),10),parseInt(c.getAttribute('data-idx'),10),'edit');lpt=null},600)},{passive:true});
+['touchend','touchcancel','touchmove'].forEach(function(ev){CT.addEventListener(ev,function(){if(lpt){clearTimeout(lpt);lpt=null}},{passive:true})});
+
+var st=null;
+searchInput.addEventListener('input',function(){var v=searchInput.value;if(st)clearTimeout(st);st=setTimeout(function(){rSearch(v)},120)});
+scene.addEventListener('click',function(){if(searchBar.classList.contains('show'))closeSearch()});
+
+var tx=0,ty=0,tt=0;
+screen.addEventListener('touchstart',function(e){if(e.touches.length!==1)return;tx=e.touches[0].clientX;ty=e.touches[0].clientY;tt=Date.now()},{passive:true});
+screen.addEventListener('touchend',function(e){if(e.changedTouches.length!==1)return;var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty,dt=Date.now()-tt;
+if(dx>80&&Math.abs(dy)<60&&dt<500){if(current)rTiles();else closeMenu()}},{passive:true});
+
+if(window.matchMedia){try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(){if(A.settings.theme==='auto')aps()})}catch(e){}}
+
+onboardingOk.addEventListener('click',function(){onboardingScreen.classList.remove('show');A.settings.onboardingSeen=true;save()});
+
+function rFav(){var f=allI().filter(function(r){return r.item.badges&&r.item.badges.indexOf('猸�')!==-1}).slice(0,4);
+if(!f.length){favPanel.style.display='none';return}
+favPanel.style.display='block';
+$('favorites').innerHTML='<div class="cards">'+f.map(function(r){return rCard(r.item,r.section,r.gIdx,r.iIdx)}).join('')+'</div>'}
+
+load();aps();bEmoji();bBadges();bSecSel();bGrpSel(A.order[0]);bSecEm();
+Object.keys(A.menus).forEach(function(k){var m=A.menus[k];if(m.background)SBG[k]=m.background});
+if(!A.settings.onboardingSeen)onboardingScreen.classList.add('show');
+})();
+</script>
+</body>
+</html>
