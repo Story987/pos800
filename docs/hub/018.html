@@ -568,15 +568,16 @@ body.dark .warning-box { background: #3a3020; border-color: #6a5020; color: #e8c
         </div>
       </div>
       <div class="img-toolbar">
-        <label class="btn-upload">📷 Загрузить
-          <input type="file" accept="image/*" multiple onchange="App.Editor.uploadImages(event)">
-        </label>
-        <label class="btn-upload">📸 Камера
-          <input type="file" accept="image/*" capture="environment" onchange="App.Editor.uploadImages(event)">
-        </label>
-        <button type="button" class="btn-upload" onclick="App.Editor.toggleUrlInput()">🔗 По ссылке</button>
-        <span class="img-count" id="img-count"></span>
-      </div>
+  <label class="btn-upload">📷 Загрузить
+    <input type="file" accept="image/*" multiple onchange="App.Editor.uploadImages(event)">
+  </label>
+  <label class="btn-upload">📸 Камера
+    <input type="file" accept="image/*" capture="environment" onchange="App.Editor.uploadImages(event)">
+  </label>
+  <button type="button" class="btn-upload" onclick="App.Editor.toggleUrlInput()">🔗 По ссылке</button>
+  <button type="button" class="btn-upload" onclick="App.Editor.openArticlePicker()">📄 На статью</button>
+  <span class="img-count" id="img-count"></span>
+</div>
       <div id="url-input-box" style="display:none; margin-bottom:10px;">
         <div style="display:flex; gap:6px;">
           <input type="url" id="url-input" placeholder="https://..." style="flex:1;">
@@ -619,6 +620,19 @@ body.dark .warning-box { background: #3a3020; border-color: #6a5020; color: #e8c
         <button class="btn btn-primary btn-full" onclick="App.Editor.save()">💾 Сохранить</button>
         <button class="btn btn-secondary btn-full" onclick="App.Editor.close()">Отмена</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="article-picker-modal" onclick="App.Editor.closeArticlePickerOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="App.Editor.closeArticlePicker()">×</button>
+    <h3>📄 Вставить ссылку на статью</h3>
+    <div class="modal-hint">Поиск по названию. Тап на статью → вставится <code>[[Название]]</code>.</div>
+    <input type="search" id="article-picker-search" placeholder="🔍 Поиск статьи…" oninput="App.Editor.renderArticlePicker(this.value)" style="margin-bottom:10px;">
+    <div id="article-picker-content" style="max-height:60vh; overflow-y:auto;"></div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary btn-full" onclick="App.Editor.closeArticlePicker()">Закрыть</button>
     </div>
   </div>
 </div>
@@ -832,7 +846,9 @@ App.SlashCommands = [
   { key: 'hr', icon: '—', title: 'Разделитель', desc: '---', tags: ['разделитель','hr'],
     action: (ed) => ed.insertText('\n---\n') },
   { key: 'link', icon: '🔗', title: 'Ссылка', desc: '[текст](url)', tags: ['ссылка','link'],
-    action: (ed) => ed.insertText('[текст](https://)') },
+  action: (ed) => ed.insertText('[текст](https://)') },
+{ key: 'article', icon: '📄', title: 'На статью', desc: '[[Название]]', tags: ['статья','article','ссылка'],
+  action: (ed) => ed.openArticlePicker() },
   { key: 'og', icon: '🔖', title: 'OG-карточка', desc: 'Ссылка с превью', tags: ['og','карточка'],
     action: (ed) => ed.openOgPicker() },
   { key: 'img', icon: '🖼', title: 'Изображение', desc: 'Из библиотеки', tags: ['картинка','img'],
@@ -2645,6 +2661,73 @@ applyLibraryCollapsed() {
   if (arrow) arrow.textContent = collapsed ? '▸' : '▾';
 },
 
+openArticlePicker() {
+  App.Slash.closeMenu();
+  const modal = document.getElementById('article-picker-modal');
+  const search = document.getElementById('article-picker-search');
+  if (!modal) return;
+  if (search) search.value = '';
+  this.renderArticlePicker('');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => { try { search?.focus(); } catch(e) {} }, 200);
+},
+
+renderArticlePicker(query) {
+  const container = document.getElementById('article-picker-content');
+  if (!container) return;
+  const q = (query || '').toLowerCase().trim();
+  const currentId = App.State.editor.editingId;
+  let list = App.State.articles.filter(a => a.id !== currentId);
+  if (q) {
+    list = list.filter(a => (a.title || '').toLowerCase().includes(q));
+  }
+  if (!list.length) {
+    container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--muted);">' + (q ? 'Ничего не найдено' : 'Нет статей') + '</div>';
+    return;
+  }
+  container.innerHTML = list.map(a => {
+    const title = App.Util.escape(a.title);
+    return `<div class="og-item" onclick="App.Editor.insertArticleLink('${a.title.replace(/'/g, "\\'")}')">
+      <div class="og-favicon">📄</div>
+      <div class="og-body">
+        <div class="og-title">${title}</div>
+        <div class="og-url">${App.Util.formatDateShort(a.createdAt)}</div>
+      </div>
+    </div>`;
+  }).join('');
+},
+
+insertArticleLink(title) {
+  this.closeArticlePicker();
+  const textarea = document.getElementById('ed-content');
+  if (!textarea) return;
+  if (App.State.editor.mode !== 'edit') this.setMode('edit');
+  textarea.focus();
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const before = textarea.value.slice(0, start);
+  const after = textarea.value.slice(end);
+  const marker = `[[${title}]]`;
+  const needsSpaceBefore = before.length > 0 && !/[\s\n]$/.test(before);
+  const needsSpaceAfter = after.length > 0 && !/^[\s\n]/.test(after);
+  const inserted = (needsSpaceBefore ? ' ' : '') + marker + (needsSpaceAfter ? ' ' : '');
+  textarea.value = before + inserted + after;
+  textarea.selectionStart = textarea.selectionEnd = start + inserted.length;
+  App.Util.vibrate(10);
+  App.UI.toast(`📄 ${marker}`);
+},
+
+closeArticlePicker() {
+  const modal = document.getElementById('article-picker-modal');
+  if (modal) modal.classList.remove('open');
+  document.body.style.overflow = '';
+},
+
+closeArticlePickerOutside(e) {
+  if (e.target.id === 'article-picker-modal') this.closeArticlePicker();
+},
+
   openImagePicker() {
     App.Slash.closeMenu();
     const library = document.getElementById('img-library');
@@ -3413,13 +3496,14 @@ App.Feed = {
         <div class="content">${html}</div>
         ${relatedHtml}
         <div class="stats">
-          <button onclick="App.Feed.vote(${a.id}); App.Feed.openArticle(${a.id});" class="${a.voted ? 'voted' : ''}">${a.voted ? '▲' : '△'} ${a.votes}</button>
-          <button onclick="App.Feed.bookmark(${a.id}); App.Feed.openArticle(${a.id});" class="${a.bookmarked ? 'bookmarked' : ''}">${a.bookmarked ? '★' : '☆'}</button>
-          <button onclick="App.Feed.readerMode(${a.id})">📖 Режим чтения</button>
-          <span class="spacer"></span>
-          <button onclick="App.Feed.closeArticle(); App.Editor.open(${a.id});">✏️</button>
-          <button onclick="App.Feed.closeArticle(); App.Feed.confirmRemove(${a.id});">🗑</button>
-        </div>
+  <button onclick="App.Feed.vote(${a.id}); App.Feed.openArticle(${a.id});" class="${a.voted ? 'voted' : ''}">${a.voted ? '▲' : '△'} ${a.votes}</button>
+  <button onclick="App.Feed.bookmark(${a.id}); App.Feed.openArticle(${a.id});" class="${a.bookmarked ? 'bookmarked' : ''}">${a.bookmarked ? '★' : '☆'}</button>
+  <button onclick="App.Feed.readerMode(${a.id})">📖 Режим чтения</button>
+  <button onclick="App.Feed.exportArticleHTML(${a.id})">📤 Поделиться</button>
+  <span class="spacer"></span>
+  <button onclick="App.Feed.closeArticle(); App.Editor.open(${a.id});">✏️</button>
+  <button onclick="App.Feed.closeArticle(); App.Feed.confirmRemove(${a.id});">🗑</button>
+</div>
         <div class="comments">
           <h3>💬 Комментарии (${(a.comments || []).length})</h3>
           <div class="comment-form">
@@ -3492,7 +3576,7 @@ App.Feed = {
   },
   closeArticleOutside(e) { if (e.target.id === 'article-modal') this.closeArticle(); },
 
-  onWikiClick(event, articleId) {
+    onWikiClick(event, articleId) {
     if (event) {
       event.preventDefault();
       event.stopPropagation();
@@ -3507,6 +3591,141 @@ App.Feed = {
     this.closeArticle();
     setTimeout(() => this.openArticle(id), 50);
     return false;
+  },
+
+  // Экспорт одной статьи в HTML для отправки другу
+  async exportArticleHTML(id) {
+    const a = App.State.articles.find(x => x.id === id);
+    if (!a) { App.UI.toast('❌ Статья не найдена'); return; }
+    App.UI.toast('⏳ Готовлю файл…');
+    try {
+      // Рендерим контент с картинками (blob URL → img теги)
+      const htmlContent = await App.Images.renderContentWithImages(a.content, a.imageIds);
+      // Заменяем blob: URL на data: URL (base64), чтобы файл был автономен
+      const finalHtml = await this._inlineImagesAsDataURLs(htmlContent);
+      // Собираем полный HTML
+      const doc = this._buildArticleHTML(a, finalHtml);
+      // Скачиваем
+      const safeName = (a.title || 'article').replace(/[^\w\-\u0400-\u04FF]+/g, '_').slice(0, 60) || 'article';
+      const filename = `prostranstvo-${safeName}-${App.Util.formatDateFile()}.html`;
+      App.Util.downloadBlob(new Blob([doc], { type: 'text/html;charset=utf-8' }), filename);
+      App.UI.toast('✅ Файл готов');
+    } catch(e) {
+      App.Log.error('Feed', 'exportArticleHTML: ' + e.message);
+      App.UI.toast('❌ ' + e.message);
+    }
+  },
+
+  // Заменяет blob: URL на data: URL в готовом HTML
+  async _inlineImagesAsDataURLs(html) {
+    if (!html) return '';
+    const imgRegex = /<img\s+[^>]*src="(blob:[^"]+)"[^>]*>/g;
+    const matches = [...html.matchAll(imgRegex)];
+    if (!matches.length) return html;
+    let result = html;
+    for (const m of matches) {
+      const blobUrl = m[1];
+      try {
+        const resp = await fetch(blobUrl);
+        const blob = await resp.blob();
+        const dataUrl = await App.Util.blobToDataURL(blob);
+        // Меняем только в этом конкретном img (глобально — на случай дублей)
+        result = result.split(blobUrl).join(dataUrl);
+      } catch(e) {
+        App.Log.warn('Feed', 'inline image failed: ' + e.message);
+      }
+    }
+    return result;
+  },
+
+  // Шаблон автономного HTML одной статьи
+  _buildArticleHTML(a, htmlContent) {
+    const title = App.Util.escape(a.title || 'Без названия');
+    const author = App.Util.escape(a.author || 'Аноним');
+    const date = App.Util.formatDate(a.createdAt);
+    const tagsHtml = (a.tags || []).map(t => `<span class="tag">#${App.Util.escape(t)}</span>`).join(' ');
+    const relatedIds = a.relatedIds || [];
+    const relatedHtml = relatedIds.length
+      ? `<div class="related"><b>🔗 Связанные статьи в «Пространстве»:</b><ul>${
+          relatedIds.map(id => {
+            const r = App.State.articles.find(x => x.id === id);
+            return r ? `<li>${App.Util.escape(r.title)}</li>` : '';
+          }).join('')
+        }</ul></div>`
+      : '';
+    return `<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${title} · Пространство</title>
+<style>
+:root {
+  --bg: #f5f5f5; --card: #ffffff; --text: #2b2b2b; --muted: #7a7a7a;
+  --accent: #629fca; --accent-dark: #4a7fa8; --border: #e5e5e5;
+  --tag-bg: #eef3f7; --code-bg: #f0f0f0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.65;
+  font-size: 16px; padding: 12px;
+  overflow-wrap: anywhere; word-break: break-word;
+}
+article { max-width: 720px; margin: 0 auto; background: var(--card); border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+h1 { font-size: 24px; margin-bottom: 8px; }
+.meta { font-size: 13px; color: var(--muted); margin-bottom: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+.meta .author { color: var(--accent); }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.tag { background: var(--tag-bg); color: var(--accent-dark); padding: 3px 10px; border-radius: 12px; font-size: 12px; }
+.content p { margin-bottom: 12px; }
+.content h1, .content h2 { font-size: 19px; margin: 20px 0 10px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content code { background: var(--code-bg); padding: 2px 6px; border-radius: 3px; font-family: ui-monospace, monospace; font-size: 13px; }
+.content pre { background: var(--code-bg); padding: 12px; border-radius: 6px; overflow-x: auto; font-size: 13px; margin: 12px 0; }
+.content blockquote { border-left: 3px solid var(--accent); padding-left: 12px; color: var(--muted); margin: 12px 0; }
+.content ul, .content ol { margin: 10px 0 10px 22px; }
+.content a { color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent); }
+.content img { max-width: 100%; border-radius: 6px; margin: 10px 0; display: block; }
+.content .og-card { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 12px 0; background: var(--tag-bg); text-decoration: none; color: inherit; }
+.content .og-card img { width: 100%; height: 180px; object-fit: cover; }
+.content .og-card .og-body { padding: 12px 14px; }
+.content .og-card .og-host { font-size: 11px; color: var(--accent); text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
+.content .og-card .og-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.content .og-card .og-desc { font-size: 13px; color: var(--muted); }
+.content .vk-embed { margin: 12px 0; border-radius: 8px; overflow: hidden; background: #000; border: 1px solid var(--border); }
+.content .vk-embed iframe { display: block; width: 100%; border: none; aspect-ratio: 16 / 9; }
+.content .vk-embed .vk-src { display: block; padding: 6px 12px; font-size: 11px; color: var(--muted); background: var(--card); border-top: 1px solid var(--border); }
+.content .wiki-link { color: var(--accent); font-weight: 500; border-bottom: 1px dashed var(--accent); }
+.content .wiki-link-broken { color: var(--muted); text-decoration: line-through; border-bottom: 1px dotted var(--muted); }
+.related { margin-top: 20px; padding: 12px 14px; background: var(--tag-bg); border-left: 3px solid var(--accent); border-radius: 6px; font-size: 13px; }
+.related ul { margin: 6px 0 0 18px; }
+.footer { max-width: 720px; margin: 16px auto 0; padding: 16px; text-align: center; font-size: 12px; color: var(--muted); line-height: 1.7; }
+.footer a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+@media (max-width: 640px) {
+  body { padding: 8px; }
+  article { padding: 14px; }
+  h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<article>
+  <h1>${title}</h1>
+  <div class="meta">
+    <span class="author">@${author}</span>
+    <span>${date}</span>
+  </div>
+  ${tagsHtml ? `<div class="tags">${tagsHtml}</div>` : ''}
+  <div class="content">${htmlContent}</div>
+  ${relatedHtml}
+</article>
+<div class="footer">
+  <div style="font-weight:600; margin-bottom:4px;">✦ Создано в «Пространстве»</div>
+  <div>Автор приложения: <a href="https://izumrud.data.blog/author/dok345/" target="_blank">док345</a> из <a href="https://izumrud.data.blog/blog/" target="_blank">Сада идей</a> 🌿</div>
+</div>
+</body>
+</html>`;
   }
 };
 
@@ -3638,11 +3857,29 @@ App.Tags = {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     this.render();
   },
-  render() {
-    const page = document.getElementById('tags-page');
-    if (!page) return;
-    const tagsMap = new Map();
-    for (const a of App.State.articles) {
+  findBroken() {
+  const broken = [];
+  for (const a of App.State.articles) {
+    const content = a.content || '';
+    const re = /\[\[([^\]|]+?)(?:\|[^\]]+?)?\]\]/g;
+    let m;
+    while ((m = re.exec(content)) !== null) {
+      const target = m[1].trim();
+      if (!target) continue;
+      const resolved = App.Articles.resolveLink(target);
+      if (!resolved) {
+        broken.push({ article: a, target });
+      }
+    }
+  }
+  return broken;
+},
+
+render() {
+  const page = document.getElementById('links-page');
+  if (!page) return;
+  const links = new Map();
+  for (const a of App.State.articles) {
       for (const t of (a.tags || [])) {
         if (!t) continue;
         if (!tagsMap.has(t)) tagsMap.set(t, []);
@@ -3700,7 +3937,20 @@ App.Links = {
         else links.get(url).og = { title: m[2], desc: m[3], image: m[4] };
       }
     }
-    const list = [...links.values()];
+        const list = [...links.values()];
+    const broken = this.findBroken();
+    let brokenHtml = '';
+    if (broken.length) {
+      brokenHtml = `
+        <div class="section-title" style="color:var(--danger);">⚠️ Битые ссылки (${broken.length})</div>
+        <div class="warning-box">Эти [[ссылки]] не находят статью. Проверь названия или переименуй обратно.</div>
+        ${broken.map(b => `<div class="storage-row broken">
+          <span style="font-size:16px;">⚠️</span>
+          <span class="key-name" style="flex:1;">[[${App.Util.escape(b.target)}]]</span>
+          <span class="key-size">в «${App.Util.escape(b.article.title)}»</span>
+        </div>`).join('')}
+      `;
+    }
     page.innerHTML = `
       <div class="section-title">🔗 Ссылки (${list.length})</div>
       ${list.length === 0 ? '<div class="empty"><h3>🔗 Нет</h3></div>' :
@@ -3717,6 +3967,7 @@ App.Links = {
             </div>
           </div>`;
         }).join('')}
+      ${brokenHtml}
     `;
   }
 };
